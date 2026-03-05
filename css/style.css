@@ -248,7 +248,8 @@ a{ color:inherit; text-decoration:none; }
   position: relative;
   display: block;
   width: 100%;
-  height: 520px;                 /* BA 쓰던 높이 그대로 */
+  height: auto;              /* ✅ 고정 높이 제거 */
+  aspect-ratio: 16 / 9;      /* ✅ 기본 비율(가로형) */
   border-radius: 20px;
   overflow: hidden;
   border: 1px solid rgba(255,255,255,0.10);
@@ -258,9 +259,10 @@ a{ color:inherit; text-decoration:none; }
 .proof-visual img{
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;       /* ✅ 포스터형 전체가 보이게 */
   display: block;
-  transform: scale(1.02);
+  background: rgba(0,0,0,0.25);
+  transform: none;
 }
 
 .proof-visual::after{
