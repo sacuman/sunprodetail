@@ -7,6 +7,7 @@
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
+
   <header class="topbar">
     <div class="container topbar-inner">
       <a class="brand" href="index.html">
@@ -28,22 +29,66 @@
   </header>
 
   <main>
+
     <section class="page-head">
       <div class="container">
         <h1 class="page-title">Gallery</h1>
-        <p class="page-sub">Before/After, paint correction, coating, interiors (we’ll add grid later).</p>
+        <p class="page-sub">Real detailing results from our work in Wangara.</p>
       </div>
     </section>
 
     <section class="section">
       <div class="container">
-        <div class="grid-3">
-          <div class="card"><h3>Before / After</h3><p>Placeholder</p></div>
-          <div class="card"><h3>Paint Correction</h3><p>Placeholder</p></div>
-          <div class="card"><h3>Ceramic Coating</h3><p>Placeholder</p></div>
+
+        <!-- Refresh Detailing -->
+        <div class="gallery-section">
+          <h2 class="gallery-title">Refresh Detailing</h2>
+          <div class="gallery-layout">
+            <div class="gallery-thumbs">
+              <img src="images/refresh/r1.jpg" alt="Refresh Detailing 1">
+              <img src="images/refresh/r2.jpg" alt="Refresh Detailing 2">
+              <img src="images/refresh/r3.jpg" alt="Refresh Detailing 3">
+              <img src="images/refresh/r4.jpg" alt="Refresh Detailing 4">
+            </div>
+            <div class="gallery-main">
+              <img src="images/refresh/r1.jpg" alt="Refresh main image">
+            </div>
+          </div>
         </div>
+
+        <!-- Paint Correction -->
+        <div class="gallery-section">
+          <h2 class="gallery-title">Paint Correction</h2>
+          <div class="gallery-layout">
+            <div class="gallery-thumbs">
+              <img src="images/correction/c1.jpg" alt="Paint Correction 1">
+              <img src="images/correction/c2.jpg" alt="Paint Correction 2">
+              <img src="images/correction/c3.jpg" alt="Paint Correction 3">
+            </div>
+            <div class="gallery-main">
+              <img src="images/correction/c1.jpg" alt="Paint correction main image">
+            </div>
+          </div>
+        </div>
+
+        <!-- Ceramic Coating -->
+        <div class="gallery-section">
+          <h2 class="gallery-title">Ceramic Coating</h2>
+          <div class="gallery-layout">
+            <div class="gallery-thumbs">
+              <img src="images/ceramic/cc1.jpg" alt="Ceramic Coating 1">
+              <img src="images/ceramic/cc2.jpg" alt="Ceramic Coating 2">
+              <img src="images/ceramic/cc3.jpg" alt="Ceramic Coating 3">
+            </div>
+            <div class="gallery-main">
+              <img src="images/ceramic/cc1.jpg" alt="Ceramic coating main image">
+            </div>
+          </div>
+        </div>
+
       </div>
     </section>
+
   </main>
 
   <footer class="footer">
@@ -51,10 +96,27 @@
       <div>© 2026 SUN PRO Car Detailing</div>
       <div class="footer-links">
         <a href="services.html">Services</a>
-        <a href="pricing.html">Pricing</a>
+        <a href="gallery.html">Gallery</a>
         <a href="contact.html">Contact</a>
       </div>
     </div>
   </footer>
+
+  <script>
+    function setupGallery(section){
+      const thumbs = section.querySelectorAll(".gallery-thumbs img");
+      const main = section.querySelector(".gallery-main img");
+
+      thumbs.forEach(img => {
+        img.addEventListener("click", () => {
+          main.src = img.src;
+          main.alt = img.alt;
+        });
+      });
+    }
+
+    document.querySelectorAll(".gallery-section").forEach(setupGallery);
+  </script>
+
 </body>
 </html>
