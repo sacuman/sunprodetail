@@ -10,27 +10,33 @@
 <body>
 
   <!-- Topbar -->
-  <header class="topbar">
-    <div class="container topbar-inner">
-      <a class="brand" href="index.html">
-        <span class="brand-dot"></span>
-        <span class="brand-name">SUN PRO</span>
-        <span class="brand-sub">Car Detailing • Wangara</span>
-      </a>
+<header class="topbar">
+  <div class="container topbar-inner">
+    <a class="brand" href="index.html">
+      <span class="brand-dot"></span>
+      <span class="brand-name">SUN PRO</span>
+      <span class="brand-sub">Car Detailing • Wangara</span>
+    </a>
 
-      <nav class="nav">
-        <a href="services.html">Services</a>
-        <a href="gallery.html">Gallery</a>
-        <a href="locations.html">Locations</a>
-        <a href="about.html">About</a>
-        <a href="faq.html">FAQ</a>
-        <a href="contact.html">Contact</a>
+    <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
 
-        <a class="btn" href="contact.html">Enquire</a>
-        <a class="btn primary" href="contact.html#book">Book</a>
-      </nav>
-    </div>
-  </header>
+    <nav class="nav">
+      <a href="services.html">Services</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="locations.html">Locations</a>
+      <a href="about.html">About</a>
+      <a href="faq.html">FAQ</a>
+      <a href="contact.html">Contact</a>
+
+      <a class="btn" href="contact.html">Enquire</a>
+      <a class="btn primary" href="contact.html#book">Book</a>
+    </nav>
+  </div>
+</header>
 
   <main>
 
@@ -40,11 +46,11 @@
         <div class="hero-left">
           <span class="pill">By appointment only • Inside Wangara Motors</span>
 
-          <h1>
-            Professional Detailing<br />
-            That Makes Your Car Look<br />
-            <span class="accent">New Again</span>
-          </h1>
+<h1 class="hero-title">
+<span>Professional Detailing That</span>
+<span>Makes Your Car Look</span>
+<span class="accent">New Again</span>
+</h1>
 
           <p class="lead">
             Refresh detailing, paint correction, and ceramic coating — built for real results, not a quick wash.
@@ -161,6 +167,18 @@
       </div>
     </div>
   </footer>
+<script>
+  const menuToggle = document.querySelector(".menu-toggle");
+  const nav = document.querySelector(".nav");
 
+  if (menuToggle && nav) {
+    menuToggle.addEventListener("click", () => {
+      nav.classList.toggle("is-open");
+
+      const expanded = nav.classList.contains("is-open");
+      menuToggle.setAttribute("aria-expanded", expanded ? "true" : "false");
+    });
+  }
+</script>
 </body>
 </html>

@@ -117,6 +117,18 @@
 
     document.querySelectorAll(".gallery-section").forEach(setupGallery);
   </script>
+<script>
+  const menuToggle = document.querySelector(".menu-toggle");
+  const nav = document.querySelector(".nav");
 
+  if (menuToggle && nav) {
+    menuToggle.addEventListener("click", () => {
+      nav.classList.toggle("is-open");
+
+      const expanded = nav.classList.contains("is-open");
+      menuToggle.setAttribute("aria-expanded", expanded ? "true" : "false");
+    });
+  }
+</script>
 </body>
 </html>
