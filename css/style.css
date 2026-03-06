@@ -942,7 +942,46 @@ img{
   border-radius:14px;
   border:1px solid rgba(255,255,255,0.08);
 }
+/* GALLERY - mobile */
+@media (max-width: 980px){
+  .gallery-layout{
+    grid-template-columns:1fr;
+    gap:14px;
+  }
 
+  .gallery-thumbs{
+    display:flex;
+    flex-direction:row;
+    gap:10px;
+    height:auto;
+    max-height:none;
+    overflow-x:auto;
+    overflow-y:hidden;
+    padding-right:0;
+    padding-bottom:6px;
+  }
+
+  .gallery-thumbs img{
+    width:90px;
+    min-width:90px;
+  }
+
+  .gallery-title{
+    font-size:22px;
+    margin-bottom:14px;
+  }
+
+  .gallery-section{
+    margin-bottom:48px;
+  }
+
+  .gallery-main img{
+    height:auto;
+    max-height:520px;
+    object-fit:contain;
+    object-position:center;
+  }
+}
 /* =========================
    FOOTER
    ========================= */
