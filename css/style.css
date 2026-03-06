@@ -118,7 +118,7 @@ img{
     grid-template-columns: 1fr auto;
     align-items: start;
     gap: 12px 10px;
-    padding: 12px 0;
+    padding:10px 6px 14px;
   }
 
   .brand{
@@ -134,7 +134,7 @@ img{
 
   .brand-dot{
     position: absolute;
-    left: 0;
+    left: 6px;
     top: 14px;
   }
 
