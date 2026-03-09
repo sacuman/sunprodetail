@@ -1335,6 +1335,15 @@ img{
   flex-wrap:wrap;
   margin-top:4px;
 }
+.contact-first-section{
+  padding-top:24px;
+  padding-bottom:40px;
+}
+
+.contact-cta-section{
+  padding-top:20px;
+  padding-bottom:5px;
+}
 
 /* CONTACT - mobile */
 @media (max-width: 980px){
@@ -1369,7 +1378,23 @@ img{
     font-size:30px;
   }
 }
+.form-photo-note{
+  padding:18px;
+  border-radius:18px;
+  border:1px solid rgba(255,255,255,0.10);
+  background:rgba(255,255,255,0.025);
+}
 
+.form-photo-note h3{
+  margin:0 0 8px;
+  font-size:18px;
+}
+
+.form-photo-note p{
+  margin:0 0 14px;
+  color:rgba(255,255,255,0.72);
+  line-height:1.7;
+}
 @media (max-width: 640px){
   .contact-title{
     font-size:24px;
