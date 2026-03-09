@@ -38,33 +38,152 @@
   </div>
 </header>
 
-  <main>
-    <section class="page-head">
-      <div class="container">
-        <h1 class="page-title">Contact</h1>
-        <p class="page-sub">Call / Text and basic booking form will be added later.</p>
-      </div>
-    </section>
+ <main>
+  <section class="page-head">
+    <div class="container">
+      <h1 class="page-title">Contact</h1>
+      <p class="page-sub">
+        Get in touch for a quote, booking, or advice on the right detailing service for your vehicle.
+      </p>
+    </div>
+  </section>
 
-    <section class="section contact-first-section">
-      <div class="container">
-        <div class="grid-3">
-          <div class="card">
+  <section class="section contact-first-section">
+    <div class="container">
+
+      <div class="contact-hero-card">
+        <p class="contact-kicker">Contact SUN PRO</p>
+        <h2 class="contact-title">Fast enquiries, practical advice, and accurate quotes</h2>
+        <p class="contact-lead">
+          The best way to get an accurate quote is to send us a few details and photos of your vehicle.
+          This helps us understand the condition and recommend the right service.
+        </p>
+      </div>
+
+      <div class="contact-grid">
+
+        <div class="contact-info-panel">
+          <div class="contact-info-card">
             <h3>Call / Text</h3>
             <p>0416 795 345</p>
+            <div class="contact-info-actions">
+              <a class="btn primary" href="tel:0416795345">Call Now</a>
+              <a class="btn" href="sms:0416795345">Text Us</a>
+            </div>
           </div>
-          <div class="card">
+
+          <div class="contact-info-card">
             <h3>Email</h3>
-            <p>sacu2000@gmail.com</p>
+            <p>hello@sunprodetail.com</p>
+            <div class="contact-info-actions">
+              <a class="btn" href="mailto:hello@sunprodetail.com">Email Us</a>
+            </div>
           </div>
-          <div class="card" id="book">
-            <h3>Booking</h3>
-            <p>Placeholder form area</p>
+
+          <div class="contact-info-card">
+            <h3>Location</h3>
+            <p>Inside Wangara Motors, Wangara WA</p>
+            <div class="contact-info-actions">
+              <a class="btn" href="locations.html">View Location</a>
+            </div>
+          </div>
+
+          <div class="contact-tip-card">
+            <h3>Tip for a faster quote</h3>
+            <p>
+              Please send a few photos of your car, including any scratches, paint issues, stains,
+              or areas you want us to inspect. This helps us give more accurate advice and pricing.
+            </p>
           </div>
         </div>
+
+        <div class="contact-form-panel" id="book">
+          <div class="contact-form-card">
+            <p class="contact-kicker">Request a Quote</p>
+            <h2 class="contact-form-title">Send us your details</h2>
+            <p class="contact-form-sub">
+              Fill in the form below. We’ll later connect this so it sends directly to your email.
+            </p>
+
+            <form class="contact-form" action="https://formspree.io/f/mgonoojp" method="post" enctype="multipart/form-data">
+              <div class="contact-form-grid">
+                <div class="form-field">
+                  <label for="name">Name</label>
+                  <input type="text" id="name" name="name" placeholder="Your name" />
+                </div>
+
+                <div class="form-field">
+                  <label for="phone">Phone</label>
+                  <input type="tel" id="phone" name="phone" placeholder="Your phone number" />
+                </div>
+
+                <div class="form-field">
+                  <label for="email">Email</label>
+                  <input type="email" id="email" name="email" placeholder="Your email address" />
+                </div>
+
+                <div class="form-field">
+                  <label for="vehicle">Vehicle</label>
+                  <input type="text" id="vehicle" name="vehicle" placeholder="Make / model / year" />
+                </div>
+              </div>
+
+              <div class="form-field">
+                <label for="service">Service Interested In</label>
+                <select id="service" name="service">
+                  <option value="">Select a service</option>
+                  <option>Refresh Detailing</option>
+                  <option>Paint Correction</option>
+                  <option>Ceramic Coating</option>
+                  <option>Interior Detailing</option>
+                  <option>Not sure / Need advice</option>
+                </select>
+              </div>
+
+              <div class="form-field">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" rows="6" placeholder="Tell us about your car, the condition, and the result you want."></textarea>
+              </div>
+
+              <div class="form-field">
+                <label for="photos">Vehicle Photos</label>
+                <input type="file" id="photos" name="photos" multiple />
+                <p class="form-help">
+                  For a more accurate quote, please attach a few photos of the vehicle and any areas of concern.
+                </p>
+              </div>
+
+              <div class="contact-form-actions">
+                <button class="btn primary" type="submit">Send Enquiry</button>
+                <a class="btn ghost" href="sms:0416795345">Text Photos Instead</a>
+              </div>
+            </form>
+          </div>
+        </div>
+
       </div>
-    </section>
-  </main>
+
+    </div>
+  </section>
+
+  <section class="section contact-cta-section">
+    <div class="container">
+      <div class="end-cta-inner">
+        <div>
+          <h3>Need help choosing the right service?</h3>
+          <p>
+            Tell us what result you want and send a few photos. We’ll help you choose the most suitable option.
+          </p>
+        </div>
+
+        <div class="end-cta-actions">
+          <a class="btn primary" href="tel:0416795345">Call</a>
+          <a class="btn" href="sms:0416795345">Text</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
 
   <footer class="footer">
     <div class="container footer-inner">
