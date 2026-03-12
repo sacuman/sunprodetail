@@ -106,19 +106,26 @@ img{
   transform:translateY(-1px);
 }
 
+/* MOBILE - Instagram button full width */
 @media (max-width:640px){
-  .btn.insta-real{
-    width:54px;
-    height:54px;
-    border-radius:16px;
+
+  .hero-cta .btn.insta-real{
+    width:100% !important;
+    height:58px !important;
+    border-radius:18px !important;
+
+    display:flex !important;
+    align-items:center !important;
+    justify-content:center !important;
+    padding:0 !important;
   }
 
-  .btn.insta-real svg{
-    width:25px;
-    height:25px;
+  .hero-cta .btn.insta-real svg{
+    width:26px;
+    height:26px;
   }
+
 }
-
 .brand{
   display: flex;
   align-items: center;
