@@ -59,6 +59,65 @@ img{
   gap: 14px;
   padding: 14px 0;
 }
+/* INSTAGRAM BUTTON */
+.btn.insta-real{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  width:58px;
+  height:58px;
+  padding:0 !important;
+  border:none !important;
+  border-radius:18px;
+  color:#fff !important;
+  background:linear-gradient(
+    135deg,
+    #833ab4 0%,
+    #c13584 28%,
+    #e1306c 50%,
+    #fd1d1d 72%,
+    #fcb045 100%
+  ) !important;
+  box-shadow:
+    0 10px 24px rgba(0,0,0,0.28),
+    inset 0 1px 0 rgba(255,255,255,0.18);
+  transition:
+    transform .18s ease,
+    box-shadow .18s ease,
+    filter .18s ease;
+}
+
+.btn.insta-real svg{
+  width:28px;
+  height:28px;
+  display:block;
+  color:#fff;
+}
+
+.btn.insta-real:hover{
+  transform:translateY(-3px);
+  box-shadow:
+    0 16px 28px rgba(0,0,0,0.34),
+    inset 0 1px 0 rgba(255,255,255,0.2);
+  filter:saturate(1.08) brightness(1.04);
+}
+
+.btn.insta-real:active{
+  transform:translateY(-1px);
+}
+
+@media (max-width:640px){
+  .btn.insta-real{
+    width:54px;
+    height:54px;
+    border-radius:16px;
+  }
+
+  .btn.insta-real svg{
+    width:25px;
+    height:25px;
+  }
+}
 
 .brand{
   display: flex;
@@ -106,7 +165,46 @@ img{
 .menu-toggle{
   display: none;
 }
+.gold-flow{
+  display:inline-block;
+  font-size:30px; 
+  font-weight:900;
+  letter-spacing:-0.02em;
+  line-height:1.1;
 
+  background: linear-gradient(
+    90deg,
+    #8f6717 0%,
+    #b8861f 18%,
+    #f0cf68 34%,
+    #fff2a6 50%,
+    #d4a53a 66%,
+    #9a6d17 82%,
+    #7b5310 100%
+  );
+  background-size: 220% auto;
+  background-position: 0% 50%;
+
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+  color:transparent;
+
+  text-shadow:
+    0 1px 0 rgba(60,40,0,0.35),
+    0 0 1px rgba(255,220,120,0.08);
+
+  animation: goldFlowMove 4.2s linear infinite;
+}
+
+@keyframes goldFlowMove{
+  0%{
+    background-position: 0% 50%;
+  }
+  100%{
+    background-position: 100% 50%;
+  }
+}
 /* =========================
    TOPBAR - mobile only
    ========================= */
