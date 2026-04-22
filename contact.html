@@ -3,26 +3,20 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Contact | SUN PRO Car Detailing</title>
+  <title>Contact & Quote | SUN PRO Car Detailing</title>
   <link rel="stylesheet" href="css/style.css" />
 </head>
-
 <body>
 
-   <!-- Topbar -->
 <header class="topbar">
   <div class="container topbar-inner">
     <a class="brand" href="index.html">
-  <img src="images/logo.png" class="brand-logo" alt="SUN PRO">
-  <p class="brand-tag gold-flow">Like New. Every Time</p>
-</a>
-
+      <img src="images/logo.png" class="brand-logo" alt="SUN PRO">
+      <p class="brand-tag">Like New. Every Time.</p>
+    </a>
     <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false">
-      <span></span>
-      <span></span>
-      <span></span>
+      <span></span><span></span><span></span>
     </button>
-
     <nav class="nav">
       <a href="services.html">Services</a>
       <a href="gallery.html">Gallery</a>
@@ -30,254 +24,325 @@
       <a href="about.html">About</a>
       <a href="faq.html">FAQ</a>
       <a href="contact.html">Contact</a>
-
       <a class="btn" href="contact.html">Enquire</a>
       <a class="btn primary" href="contact.html#book">Book</a>
     </nav>
   </div>
 </header>
 
+<main>
+  <section class="page-head">
+    <div class="container">
+      <div class="kicker">Get in Touch</div>
+      <h1 class="page-title">CONTACT<br><span class="gold">& QUOTE</span></h1>
+      <p class="page-sub">Upload photos of your car — we review them personally and reply with accurate pricing.</p>
+    </div>
+  </section>
 
-  <main>
-    <section class="page-head">
-      <div class="container">
-        <h1 class="page-title">Contact</h1>
-        <p class="page-sub">
-          Get in touch for a quote, booking, or advice on the right detailing service for your vehicle.
+  <section class="section contact-first-section">
+    <div class="container">
+
+      <div class="contact-hero-card">
+        <p class="contact-kicker">How It Works</p>
+        <h2 class="contact-title">PHOTO QUOTE — FAST & ACCURATE</h2>
+        <p class="contact-lead">
+          Upload photos of your vehicle — paint issues, scratches, stains, or interior condition — and we'll review them personally and get back with honest pricing.
         </p>
       </div>
-    </section>
 
-    <section class="section contact-first-section">
-      <div class="container">
+      <div class="contact-grid">
 
-        <div class="contact-hero-card">
-          <p class="contact-kicker">Contact SUN PRO</p>
-          <h2 class="contact-title">Fast enquiries, practical advice, and accurate quotes</h2>
-          <p class="contact-lead">
-            The best way to get an accurate quote is to send us a few details about your vehicle.
-            If possible, you can also send photos by text or email after submitting the form.
-          </p>
-        </div>
-
-        <div class="contact-grid">
-
-          <div class="contact-info-panel">
-            <div class="contact-info-card">
-              <h3>Call / Text</h3>
-              <p>0416 795 345</p>
-              <div class="contact-info-actions">
-                <a class="btn primary" href="tel:0416795345">Call Now</a>
-                <a class="btn" href="sms:0416795345">Text Us</a>
-              </div>
-            </div>
-
-            <div class="contact-tip-card">
-              <h3>Tip for a faster quote</h3>
-              <p>
-                Please send a few photos of your car, including any scratches, paint issues, stains,
-                or areas you want us to inspect. This helps us give more accurate advice and pricing.
-              </p>
-
-              <div class="contact-info-actions">
-                <a class="btn" href="sms:0416795345">Text Photos</a>
-                <a class="btn ghost" href="mailto:hello@sunprodetail.com?subject=Vehicle Photos for Quote">Email Photos</a>
-              </div>
+        <!-- LEFT -->
+        <div class="contact-info-panel">
+          <div class="contact-info-card">
+            <h3>Call / Text</h3>
+            <p>0416 795 345</p>
+            <div class="contact-info-actions">
+              <a class="btn primary" href="tel:0416795345">Call Now</a>
+              <a class="btn" href="sms:0416795345">Text Us</a>
             </div>
           </div>
 
-          <div class="contact-form-panel" id="book">
-            <div class="contact-form-card" id="contact-form-card">
-              <p class="contact-kicker">Request a Quote</p>
-              <h2 class="contact-form-title">Send us your details</h2>
-              <p class="contact-form-sub">
-                Fill in the form below and we’ll get back to you as soon as possible.
-              </p>
-
-              <form
-                id="contactForm"
-                class="contact-form"
-                action="https://formspree.io/f/mgonoojp"
-                method="POST"
-                novalidate
-              >
-                <div class="contact-form-grid">
-                  <div class="form-field">
-                    <label for="name">Name</label>
-                    <input type="text" id="name" name="name" placeholder="Your name" required />
-                  </div>
-
-                  <div class="form-field">
-                    <label for="phone">Phone</label>
-                    <input type="tel" id="phone" name="phone" placeholder="Your phone number" required />
-                  </div>
-
-                  <div class="form-field">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" name="email" placeholder="Your email address" required />
-                  </div>
-
-                  <div class="form-field">
-                    <label for="vehicle">Vehicle</label>
-                    <input type="text" id="vehicle" name="vehicle" placeholder="Make / model / year" />
-                  </div>
-                </div>
-
-                <div class="form-field">
-                  <label for="service">Service Interested In</label>
-                  <select id="service" name="service" required>
-                    <option value="">Select a service</option>
-                    <option>Refresh Detailing</option>
-                    <option>Paint Correction</option>
-                    <option>Ceramic Coating</option>
-                    <option>Interior Detailing</option>
-                    <option>Not sure / Need advice</option>
-                  </select>
-                </div>
-
-                <div class="form-field">
-                  <label for="message">Message</label>
-                  <textarea
-                    id="message"
-                    name="message"
-                    rows="6"
-                    placeholder="Tell us about your car, the condition, and the result you want."
-                    required
-                  ></textarea>
-                </div>
-
-                <div class="contact-form-actions">
-                  <button class="btn primary" type="submit" id="submitBtn">Send Enquiry</button>
-                </div>
-
-                <p class="form-status" id="form-status" aria-live="polite"></p>
-              </form>
-            </div>
+          <div class="contact-tip-card">
+            <h3>Why send photos?</h3>
+            <p>Every car is different. Photos of the paint, interior, and problem areas let us give you a real number — not a guess. We review all photos personally.</p>
           </div>
 
+          <div class="contact-tip-card">
+            <h3>Location</h3>
+            <p>Inside Wangara Motors<br>25 Prindiville Dr, Wangara WA 6065<br><br>By appointment only.</p>
+            <div class="contact-info-actions">
+              <a class="btn" href="locations.html">View Map</a>
+            </div>
+          </div>
         </div>
+
+        <!-- RIGHT: Form -->
+        <div class="contact-form-panel" id="book">
+          <div class="contact-form-card">
+            <p class="contact-kicker">Request a Quote</p>
+            <h2 class="contact-form-title">SEND YOUR DETAILS</h2>
+            <p class="contact-form-sub">Fill in the form and attach photos. We'll reply with accurate pricing.</p>
+
+            <form id="contactForm" class="contact-form" novalidate>
+
+              <div class="contact-form-grid">
+                <div class="form-field">
+                  <label for="name">Name</label>
+                  <input type="text" id="name" placeholder="Your name" required />
+                </div>
+                <div class="form-field">
+                  <label for="phone">Phone</label>
+                  <input type="tel" id="phone" placeholder="Your phone number" required />
+                </div>
+                <div class="form-field">
+                  <label for="email">Email</label>
+                  <input type="email" id="email" placeholder="Your email address" required />
+                </div>
+                <div class="form-field">
+                  <label for="vehicle">Vehicle</label>
+                  <input type="text" id="vehicle" placeholder="Make / Model / Year" />
+                </div>
+              </div>
+
+              <div class="form-field">
+                <label for="service">Service Interested In</label>
+                <select id="service" required>
+                  <option value="">Select a service</option>
+                  <option>Refresh Detailing</option>
+                  <option>Paint Correction</option>
+                  <option>Ceramic Coating</option>
+                  <option>Interior Detailing</option>
+                  <option>Not sure / Need advice</option>
+                </select>
+              </div>
+
+              <!-- PHOTO UPLOAD -->
+              <div class="form-field">
+                <label>Vehicle Photos <span style="color:var(--gold);font-size:10px;letter-spacing:0.08em">(UP TO 10 — RECOMMENDED)</span></label>
+                <div class="photo-upload-zone" id="photoUploadZone">
+                  <input type="file" id="photoInput" accept="image/*" multiple>
+                  <div class="photo-upload-icon">📸</div>
+                  <div class="photo-upload-title">Tap to add car photos</div>
+                  <div class="photo-upload-sub">JPG · PNG · HEIC · up to 10 photos<br>Include paint, interior, scratches, or areas of concern</div>
+                </div>
+                <div class="photo-preview-grid" id="photoPreviewGrid"></div>
+                <div class="photo-count-label" id="photoCountLabel" style="display:none"></div>
+              </div>
+
+              <div class="form-field">
+                <label for="message">Message</label>
+                <textarea id="message" rows="5" placeholder="Tell us about your car — condition, what you want done, and the result you're after." required></textarea>
+              </div>
+
+              <!-- Progress bar -->
+              <div id="uploadProgress" style="display:none;margin-bottom:8px">
+                <div style="height:4px;background:rgba(255,255,255,0.08);border-radius:4px;overflow:hidden">
+                  <div id="uploadBar" style="height:100%;width:0%;background:var(--gold);transition:width 0.3s;border-radius:4px"></div>
+                </div>
+                <p style="font-size:12px;color:var(--gold);margin-top:6px;text-align:center" id="uploadStatus">Uploading photos…</p>
+              </div>
+
+              <div class="contact-form-actions">
+                <button class="btn primary" type="submit" id="submitBtn">Send Enquiry</button>
+              </div>
+              <p class="form-status" id="formStatus" aria-live="polite"></p>
+            </form>
+          </div>
+        </div>
+
       </div>
-    </section>
-  </main>
+    </div>
+  </section>
+</main>
+
+<!-- SUCCESS MODAL -->
 <div class="success-modal" id="successModal" hidden>
   <div class="success-modal-backdrop" id="successBackdrop"></div>
-
-  <div class="success-modal-card" role="dialog" aria-modal="true" aria-labelledby="successTitle">
+  <div class="success-modal-card" role="dialog" aria-modal="true">
     <p class="contact-kicker">Thank You</p>
-    <h2 class="success-modal-title" id="successTitle">Thanks for contacting SUN PRO</h2>
-    <p class="success-modal-text">
-      We’ve received your enquiry and will get back to you shortly.
-    </p>
-
+    <h2 class="success-modal-title">WE'VE GOT YOUR ENQUIRY</h2>
+    <p class="success-modal-text">We've received your details and photos. We'll review them and get back to you shortly with pricing.</p>
     <div class="form-photo-note">
-      <h3>For a more accurate quote</h3>
-      <p>
-        Please send a few photos of your vehicle by text or email, including any scratches,
-        paint issues, stains, or areas you would like us to inspect.
-      </p>
-
+      <h3>Want a faster reply?</h3>
+      <p>You can also text us additional photos directly.</p>
       <div class="contact-form-actions">
-        <a class="btn" href="sms:0416795345">Text Photos</a>
-        <a class="btn ghost" href="mailto:hello@sunprodetail.com?subject=Vehicle Photos for Quote">Email Photos</a>
+        <a class="btn primary" href="sms:0416795345">Text Photos</a>
         <a class="btn ghost" href="index.html">Back to Home</a>
       </div>
     </div>
-
     <div class="contact-form-actions">
-      <button class="btn primary" type="button" id="closeSuccessModal">Close</button>
+      <button class="btn" type="button" id="closeModal">Close</button>
     </div>
   </div>
 </div>
-  <footer class="footer">
-    <div class="container footer-inner">
-      <div>© 2026 SUN PRO Car Detailing</div>
-      <div class="footer-links">
-        <a href="services.html">Services</a>
-        <a href="pricing.html">Pricing</a>
-        <a href="contact.html">Contact</a>
-      </div>
+
+<footer class="footer">
+  <div class="container footer-inner">
+    <div>© 2026 SUN PRO Car Detailing</div>
+    <div class="footer-links">
+      <a href="services.html">Services</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="contact.html">Contact</a>
     </div>
-  </footer>
+  </div>
+</footer>
 
-  <script>
-  const menuToggle = document.querySelector(".menu-toggle");
-  const nav = document.querySelector(".nav");
+<script>
+const menuToggle = document.querySelector(".menu-toggle");
+const nav = document.querySelector(".nav");
+if (menuToggle && nav) {
+  menuToggle.addEventListener("click", () => {
+    nav.classList.toggle("is-open");
+    menuToggle.setAttribute("aria-expanded", nav.classList.contains("is-open"));
+  });
+}
+</script>
 
-  if (menuToggle && nav) {
-    menuToggle.addEventListener("click", () => {
-      nav.classList.toggle("is-open");
-      const expanded = nav.classList.contains("is-open");
-      menuToggle.setAttribute("aria-expanded", expanded ? "true" : "false");
-    });
+<script type="module">
+const FIREBASE_CONFIG = {
+  apiKey:            "AIzaSyC8gEAuf2im-PZIpaJkj736J6QBizh9QVU",
+  authDomain:        "sunpro-detailing.firebaseapp.com",
+  projectId:         "sunpro-detailing",
+  storageBucket:     "sunpro-detailing.firebasestorage.app",
+  messagingSenderId: "845648894976",
+  appId:             "1:845648894976:web:498c738df9219f0aa84ce5"
+};
+
+import { initializeApp }       from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
+import { getStorage, ref, uploadBytesResumable, getDownloadURL }
+  from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-storage.js';
+import { getFirestore, collection, addDoc }
+  from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
+
+const app     = initializeApp(FIREBASE_CONFIG);
+const storage = getStorage(app);
+const db      = getFirestore(app);
+
+// ── PHOTO PREVIEW ──
+let selectedFiles = [];
+const photoInput    = document.getElementById('photoInput');
+const previewGrid   = document.getElementById('photoPreviewGrid');
+const countLabel    = document.getElementById('photoCountLabel');
+
+function renderPreviews() {
+  previewGrid.innerHTML = '';
+  selectedFiles.forEach((file, i) => {
+    const reader = new FileReader();
+    reader.onload = e => {
+      const item = document.createElement('div');
+      item.className = 'photo-preview-item';
+      item.innerHTML = `<img src="${e.target.result}" alt=""><button class="photo-preview-remove" data-i="${i}">×</button>`;
+      previewGrid.appendChild(item);
+      item.querySelector('.photo-preview-remove').addEventListener('click', () => {
+        selectedFiles.splice(i, 1);
+        renderPreviews();
+      });
+    };
+    reader.readAsDataURL(file);
+  });
+  if (selectedFiles.length > 0) {
+    countLabel.style.display = 'block';
+    countLabel.textContent   = `${selectedFiles.length} photo${selectedFiles.length > 1 ? 's' : ''} selected`;
+    document.querySelector('.photo-upload-title').textContent = 'Tap to add more photos';
+  } else {
+    countLabel.style.display = 'none';
+    document.querySelector('.photo-upload-title').textContent = 'Tap to add car photos';
+  }
+}
+
+photoInput.addEventListener('change', () => {
+  const newFiles = Array.from(photoInput.files);
+  selectedFiles  = [...selectedFiles, ...newFiles].slice(0, 10);
+  renderPreviews();
+  photoInput.value = '';
+});
+
+// ── MODAL ──
+const modal = document.getElementById('successModal');
+document.getElementById('closeModal').onclick       = () => { modal.hidden = true; document.body.style.overflow = ''; };
+document.getElementById('successBackdrop').onclick  = () => { modal.hidden = true; document.body.style.overflow = ''; };
+
+// ── FORM SUBMIT ──
+document.getElementById('contactForm').addEventListener('submit', async e => {
+  e.preventDefault();
+
+  const name    = document.getElementById('name').value.trim();
+  const phone   = document.getElementById('phone').value.trim();
+  const email   = document.getElementById('email').value.trim();
+  const vehicle = document.getElementById('vehicle').value.trim();
+  const service = document.getElementById('service').value;
+  const message = document.getElementById('message').value.trim();
+  const status  = document.getElementById('formStatus');
+  const btn     = document.getElementById('submitBtn');
+  const progress= document.getElementById('uploadProgress');
+  const bar     = document.getElementById('uploadBar');
+  const upStatus= document.getElementById('uploadStatus');
+
+  if (!name || !phone || !email) {
+    status.textContent = 'Please fill in name, phone, and email.';
+    status.classList.add('is-error');
+    return;
   }
 
-  const contactForm = document.getElementById("contactForm");
-  const formStatus = document.getElementById("form-status");
-  const submitBtn = document.getElementById("submitBtn");
-  const successModal = document.getElementById("successModal");
-  const closeSuccessModal = document.getElementById("closeSuccessModal");
-  const successBackdrop = document.getElementById("successBackdrop");
+  btn.disabled       = true;
+  btn.textContent    = 'Sending…';
+  status.textContent = '';
+  status.classList.remove('is-error');
 
-  function closeModal() {
-    if (successModal) {
-      successModal.hidden = true;
-      document.body.style.overflow = "";
-    }
-  }
+  try {
+    // 1. 사진 업로드
+    const photoURLs = [];
+    if (selectedFiles.length > 0) {
+      progress.style.display = 'block';
+      for (let i = 0; i < selectedFiles.length; i++) {
+        const file    = selectedFiles[i];
+        const id      = `${Date.now()}_${Math.random().toString(36).slice(2,7)}`;
+        const fileRef = ref(storage, `enquiries/${id}_${file.name}`);
+        upStatus.textContent = `Uploading photo ${i + 1} of ${selectedFiles.length}…`;
+        bar.style.width      = `${Math.round((i / selectedFiles.length) * 80)}%`;
 
-  if (closeSuccessModal) {
-    closeSuccessModal.addEventListener("click", closeModal);
-  }
-
-  if (successBackdrop) {
-    successBackdrop.addEventListener("click", closeModal);
-  }
-
-  if (contactForm) {
-    contactForm.addEventListener("submit", async (e) => {
-      e.preventDefault();
-
-      formStatus.textContent = "";
-      formStatus.classList.remove("is-error");
-
-      submitBtn.disabled = true;
-      submitBtn.textContent = "Sending...";
-
-      const formData = new FormData(contactForm);
-
-      try {
-        const response = await fetch(contactForm.action, {
-          method: "POST",
-          body: formData,
-          headers: {
-            Accept: "application/json"
-          }
+        await new Promise((res, rej) => {
+          const task = uploadBytesResumable(fileRef, file);
+          task.on('state_changed', null, rej, res);
         });
-
-        if (response.ok) {
-          contactForm.reset();
-          if (successModal) {
-            successModal.hidden = false;
-            document.body.style.overflow = "hidden";
-          }
-        } else {
-          const data = await response.json();
-          if (data.errors && data.errors.length > 0) {
-            formStatus.textContent = data.errors.map(error => error.message).join(", ");
-          } else {
-            formStatus.textContent = "Something went wrong. Please try again.";
-          }
-          formStatus.classList.add("is-error");
-        }
-      } catch (error) {
-        formStatus.textContent = "Something went wrong. Please check your connection and try again.";
-        formStatus.classList.add("is-error");
-      } finally {
-        submitBtn.disabled = false;
-        submitBtn.textContent = "Send Enquiry";
+        const url = await getDownloadURL(fileRef);
+        photoURLs.push(url);
       }
+      bar.style.width      = '90%';
+      upStatus.textContent = 'Saving enquiry…';
+    }
+
+    // 2. Firestore에 견적 저장
+    await addDoc(collection(db, 'enquiries'), {
+      name, phone, email, vehicle, service, message,
+      photos:      photoURLs,
+      photoCount:  photoURLs.length,
+      status:      'new',
+      submittedAt: Date.now()
     });
+
+    bar.style.width      = '100%';
+    upStatus.textContent = 'Done!';
+
+    // 성공
+    setTimeout(() => { progress.style.display = 'none'; }, 800);
+    modal.hidden               = false;
+    document.body.style.overflow = 'hidden';
+    document.getElementById('contactForm').reset();
+    selectedFiles = [];
+    renderPreviews();
+
+  } catch (err) {
+    console.error(err);
+    status.textContent = 'Something went wrong. Please try again or text us directly.';
+    status.classList.add('is-error');
+    progress.style.display = 'none';
+  } finally {
+    btn.disabled    = false;
+    btn.textContent = 'Send Enquiry';
   }
+});
 </script>
 </body>
 </html>

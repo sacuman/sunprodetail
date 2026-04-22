@@ -5,24 +5,163 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Gallery | SUN PRO Car Detailing</title>
   <link rel="stylesheet" href="css/style.css" />
-</head>
+  <style>
+    /* ── GALLERY SLIDER ── */
+    .gallery-section { margin-bottom: 56px; }
+    .gallery-section:last-child { margin-bottom: 0; }
 
+    .gallery-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 32px; letter-spacing: 0.04em;
+      margin-bottom: 6px;
+    }
+    .gallery-count {
+      font-size: 12px; color: var(--muted2);
+      font-weight: 600; letter-spacing: 0.06em;
+      text-transform: uppercase; margin-bottom: 16px;
+    }
+
+    .slider-wrap {
+      position: relative;
+    }
+
+    /* 좌우 페이드 엣지 */
+    .slider-wrap::after {
+      content: '';
+      position: absolute; top: 0; right: 0;
+      width: 60px; height: 100%;
+      background: linear-gradient(to right, transparent, var(--bg));
+      pointer-events: none; z-index: 2;
+    }
+
+    .slider-track {
+      display: flex;
+      gap: 12px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      padding-bottom: 10px;
+      cursor: grab;
+    }
+    .slider-track:active { cursor: grabbing; }
+    /* 스크롤바 숨기기 */
+    .slider-track::-webkit-scrollbar { display: none; }
+    .slider-track { -ms-overflow-style: none; scrollbar-width: none; }
+
+    .slide-item {
+      flex: 0 0 auto;
+      width: 260px;
+      aspect-ratio: 3/4;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: var(--panel2);
+      scroll-snap-align: start;
+      cursor: pointer;
+      position: relative;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .slide-item:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.5); }
+    .slide-item img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      transition: transform 0.35s;
+      pointer-events: none;
+    }
+    .slide-item:hover img { transform: scale(1.04); }
+    .slide-item-num {
+      position: absolute; bottom: 8px; left: 10px;
+      font-size: 11px; font-weight: 700; color: rgba(255,255,255,0.55);
+      background: rgba(0,0,0,0.5); padding: 2px 7px; border-radius: 4px;
+    }
+
+    /* 스크롤 힌트 */
+    .slider-hint {
+      font-size: 12px; color: var(--muted2);
+      margin-top: 10px; display: flex; align-items: center; gap: 6px;
+    }
+    .slider-hint::before { content: '←'; color: var(--gold); }
+    .slider-hint::after  { content: '→'; color: var(--gold); }
+
+    /* ── LIGHTBOX ── */
+    #lightbox {
+      position: fixed; inset: 0; z-index: 2000;
+      background: rgba(0,0,0,0.94);
+      display: none; align-items: center; justify-content: center;
+      padding: 16px;
+    }
+    #lightbox.open { display: flex; }
+
+    #lb-img {
+      max-width: 100%; max-height: 88vh;
+      border-radius: 12px; object-fit: contain;
+      box-shadow: 0 24px 80px rgba(0,0,0,0.8);
+      user-select: none;
+    }
+
+    #lb-close {
+      position: absolute; top: 14px; right: 18px;
+      font-size: 36px; color: rgba(255,255,255,0.6);
+      cursor: pointer; background: none; border: none;
+      transition: color 0.15s; line-height: 1;
+    }
+    #lb-close:hover { color: #fff; }
+
+    .lb-nav {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.15);
+      color: #fff; font-size: 24px;
+      width: 50px; height: 50px; border-radius: 50%;
+      cursor: pointer; display: flex; align-items: center; justify-content: center;
+      transition: background 0.15s; user-select: none;
+    }
+    .lb-nav:hover { background: rgba(255,255,255,0.18); }
+    #lb-prev { left: 14px; }
+    #lb-next { right: 14px; }
+
+    #lb-count {
+      position: absolute; bottom: 14px; left: 50%; transform: translateX(-50%);
+      font-size: 13px; color: rgba(255,255,255,0.4);
+      background: rgba(0,0,0,0.4); padding: 4px 12px; border-radius: 999px;
+    }
+
+    #lb-cat {
+      position: absolute; top: 14px; left: 18px;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 16px; letter-spacing: 0.08em;
+      color: var(--gold); opacity: 0.8;
+    }
+
+    /* 로딩 */
+    .gallery-loading { text-align:center; padding:60px 20px; color:var(--muted2); }
+    .gallery-spinner {
+      width:28px; height:28px;
+      border:2px solid rgba(255,255,255,0.08); border-top-color:var(--gold);
+      border-radius:50%; animation:spin 0.7s linear infinite;
+      display:inline-block; margin-bottom:14px;
+    }
+    @keyframes spin { to{transform:rotate(360deg)} }
+
+    @media (max-width: 640px) {
+      .slide-item { width: 200px; }
+      .lb-nav { width: 40px; height: 40px; font-size: 20px; }
+      #lb-prev { left: 6px; }
+      #lb-next { right: 6px; }
+    }
+  </style>
+</head>
 <body>
 
-  <!-- Topbar -->
 <header class="topbar">
   <div class="container topbar-inner">
     <a class="brand" href="index.html">
-  <img src="images/logo.png" class="brand-logo" alt="SUN PRO">
-  <p class="brand-tag gold-flow">Like New. Every Time</p>
-</a>
-
+      <img src="images/logo.png" class="brand-logo" alt="SUN PRO">
+      <p class="brand-tag">Like New. Every Time.</p>
+    </a>
     <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false">
-      <span></span>
-      <span></span>
-      <span></span>
+      <span></span><span></span><span></span>
     </button>
-
     <nav class="nav">
       <a href="services.html">Services</a>
       <a href="gallery.html">Gallery</a>
@@ -30,126 +169,208 @@
       <a href="about.html">About</a>
       <a href="faq.html">FAQ</a>
       <a href="contact.html">Contact</a>
-
       <a class="btn" href="contact.html">Enquire</a>
       <a class="btn primary" href="contact.html#book">Book</a>
     </nav>
   </div>
 </header>
 
-  <main>
+<main>
+  <section class="page-head">
+    <div class="container">
+      <div class="kicker">Our Work</div>
+      <h1 class="page-title">REAL<br><span class="gold">RESULTS</span></h1>
+      <p class="page-sub">Swipe or drag to browse. Tap any photo to enlarge.</p>
+    </div>
+  </section>
 
-    <section class="page-head">
-      <div class="container">
-        <h1 class="page-title">Gallery</h1>
-        <p class="page-sub">Real detailing results from our work in Wangara.</p>
-      </div>
-    </section>
-
-    <section class="section gallery-first-section">
-      <div class="container">
-
-        <!-- Refresh Detailing -->
-        <div class="gallery-section">
-          <h2 class="gallery-title">Refresh Detailing</h2>
-          <div class="gallery-layout">
-            <div class="gallery-thumbs">
-              <img src="images/refresh/r1.jpg" alt="Refresh Detailing 1">
-              <img src="images/refresh/r2.jpg" alt="Refresh Detailing 2">
-              <img src="images/refresh/r3.jpg" alt="Refresh Detailing 3">
-              <img src="images/refresh/r4.jpg" alt="Refresh Detailing 4">
-			  <img src="images/refresh/r5.jpg" alt="Refresh Detailing 5">
-			  <img src="images/refresh/r6.jpg" alt="Refresh Detailing 6">
-			  <img src="images/refresh/r7.jpg" alt="Refresh Detailing 7">
-			  <img src="images/refresh/r8.jpg" alt="Refresh Detailing 8">
-			  <img src="images/refresh/r9.jpg" alt="Refresh Detailing 9">
-			  <img src="images/refresh/r10.jpg" alt="Refresh Detailing 10">
-            </div>
-            <div class="gallery-main">
-              <img src="images/refresh/r1.jpg" alt="Refresh main image">
-            </div>
-          </div>
-        </div>
-
-        <!-- Paint Correction -->
-        <div class="gallery-section">
-          <h2 class="gallery-title">Paint Correction</h2>
-          <div class="gallery-layout">
-            <div class="gallery-thumbs">
-              <img src="images/correction/c1.jpg" alt="Paint Correction 1">
-              <img src="images/correction/c2.jpg" alt="Paint Correction 2">
-              <img src="images/correction/c3.jpg" alt="Paint Correction 3">
-		      <img src="images/correction/c4.jpg" alt="Paint Correction 4">
-              <img src="images/correction/c5.jpg" alt="Paint Correction 5">
-              <img src="images/correction/c6.jpg" alt="Paint Correction 6">
-			  <img src="images/correction/c7.jpg" alt="Paint Correction 7">
-			  <img src="images/correction/c8.jpg" alt="Paint Correction 8">
-			  <img src="images/correction/c9.jpg" alt="Paint Correction 9">
-            </div>
-            <div class="gallery-main">
-              <img src="images/correction/c1.jpg" alt="Paint correction main image">
-            </div>
-          </div>
-        </div>
-
-        <!-- Ceramic Coating -->
-        <div class="gallery-section">
-          <h2 class="gallery-title">Ceramic Coating</h2>
-          <div class="gallery-layout">
-            <div class="gallery-thumbs">
-              <img src="images/ceramic/cc1.jpg" alt="Ceramic Coating 1">
-              <img src="images/ceramic/cc2.jpg" alt="Ceramic Coating 2">
-              <img src="images/ceramic/cc3.jpg" alt="Ceramic Coating 3">
-            </div>
-            <div class="gallery-main">
-              <img src="images/ceramic/cc1.jpg" alt="Ceramic coating main image">
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-  </main>
-
-  <footer class="footer">
-    <div class="container footer-inner">
-      <div>© 2026 SUN PRO Car Detailing</div>
-      <div class="footer-links">
-        <a href="services.html">Services</a>
-        <a href="gallery.html">Gallery</a>
-        <a href="contact.html">Contact</a>
+  <section class="section gallery-first-section">
+    <div class="container" id="galleryRoot">
+      <div class="gallery-loading">
+        <div class="gallery-spinner"></div><br>Loading gallery…
       </div>
     </div>
-  </footer>
+  </section>
+</main>
 
-  <script>
-    function setupGallery(section){
-      const thumbs = section.querySelectorAll(".gallery-thumbs img");
-      const main = section.querySelector(".gallery-main img");
+<!-- LIGHTBOX -->
+<div id="lightbox">
+  <button id="lb-close">×</button>
+  <div id="lb-cat"></div>
+  <button class="lb-nav" id="lb-prev">‹</button>
+  <img id="lb-img" src="" alt="">
+  <button class="lb-nav" id="lb-next">›</button>
+  <div id="lb-count"></div>
+</div>
 
-      thumbs.forEach(img => {
-        img.addEventListener("click", () => {
-          main.src = img.src;
-          main.alt = img.alt;
-        });
-      });
-    }
+<footer class="footer">
+  <div class="container footer-inner">
+    <div>© 2026 SUN PRO Car Detailing</div>
+    <div class="footer-links">
+      <a href="services.html">Services</a>
+      <a href="gallery.html">Gallery</a>
+      <a href="contact.html">Contact</a>
+    </div>
+  </div>
+</footer>
 
-    document.querySelectorAll(".gallery-section").forEach(setupGallery);
-  </script>
 <script>
-  const menuToggle = document.querySelector(".menu-toggle");
-  const nav = document.querySelector(".nav");
+const menuToggle = document.querySelector(".menu-toggle");
+const nav = document.querySelector(".nav");
+if (menuToggle && nav) {
+  menuToggle.addEventListener("click", () => {
+    nav.classList.toggle("is-open");
+    menuToggle.setAttribute("aria-expanded", nav.classList.contains("is-open"));
+  });
+}
+</script>
 
-  if (menuToggle && nav) {
-    menuToggle.addEventListener("click", () => {
-      nav.classList.toggle("is-open");
+<script type="module">
+// ▼▼▼ Firebase Config ▼▼▼
+const FIREBASE_CONFIG = {
+  apiKey:            "AIzaSyC8gEAuf2im-PZIpaJkj736J6QBizh9QVU",
+  authDomain:        "sunpro-detailing.firebaseapp.com",
+  projectId:         "sunpro-detailing",
+  storageBucket:     "sunpro-detailing.firebasestorage.app",
+  messagingSenderId: "845648894976",
+  appId:             "1:845648894976:web:498c738df9219f0aa84ce5"
+};
 
-      const expanded = nav.classList.contains("is-open");
-      menuToggle.setAttribute("aria-expanded", expanded ? "true" : "false");
+import { initializeApp }   from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
+import { getFirestore, collection, getDocs, query, orderBy }
+  from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
+
+const root = document.getElementById('galleryRoot');
+const CATS = [
+  { id:'refresh',    label:'REFRESH DETAILING' },
+  { id:'correction', label:'PAINT CORRECTION'  },
+  { id:'ceramic',    label:'CERAMIC COATING'   }
+];
+
+// ── LIGHTBOX ──
+let lbPhotos = [], lbIdx = 0, lbCatLabel = '';
+const lb      = document.getElementById('lightbox');
+const lbImg   = document.getElementById('lb-img');
+const lbCount = document.getElementById('lb-count');
+const lbCat   = document.getElementById('lb-cat');
+
+function openLb(photos, idx, catLabel) {
+  lbPhotos = photos; lbIdx = idx; lbCatLabel = catLabel;
+  lbImg.src = photos[idx].url;
+  lbCat.textContent = catLabel;
+  lb.classList.add('open');
+  updateLb();
+  document.body.style.overflow = 'hidden';
+}
+function closeLb() {
+  lb.classList.remove('open');
+  document.body.style.overflow = '';
+}
+function updateLb() {
+  lbCount.textContent = `${lbIdx + 1} / ${lbPhotos.length}`;
+}
+function prevLb() {
+  lbIdx = (lbIdx - 1 + lbPhotos.length) % lbPhotos.length;
+  lbImg.src = lbPhotos[lbIdx].url;
+  updateLb();
+}
+function nextLb() {
+  lbIdx = (lbIdx + 1) % lbPhotos.length;
+  lbImg.src = lbPhotos[lbIdx].url;
+  updateLb();
+}
+
+document.getElementById('lb-close').onclick = closeLb;
+document.getElementById('lb-prev').onclick  = prevLb;
+document.getElementById('lb-next').onclick  = nextLb;
+lb.addEventListener('click', e => { if (e.target === lb) closeLb(); });
+document.addEventListener('keydown', e => {
+  if (!lb.classList.contains('open')) return;
+  if (e.key === 'Escape')      closeLb();
+  if (e.key === 'ArrowLeft')   prevLb();
+  if (e.key === 'ArrowRight')  nextLb();
+});
+
+// 라이트박스 스와이프 (모바일)
+let lbTouchX = 0;
+lb.addEventListener('touchstart', e => { lbTouchX = e.touches[0].clientX; }, { passive: true });
+lb.addEventListener('touchend',   e => {
+  const diff = lbTouchX - e.changedTouches[0].clientX;
+  if (Math.abs(diff) > 40) diff > 0 ? nextLb() : prevLb();
+});
+
+// ── SLIDER DRAG (마우스) ──
+function setupDrag(track) {
+  let isDown = false, startX, scrollLeft;
+  track.addEventListener('mousedown', e => {
+    isDown = true; track.classList.add('active');
+    startX = e.pageX - track.offsetLeft;
+    scrollLeft = track.scrollLeft;
+  });
+  track.addEventListener('mouseleave', () => { isDown = false; });
+  track.addEventListener('mouseup',    () => { isDown = false; });
+  track.addEventListener('mousemove',  e => {
+    if (!isDown) return;
+    e.preventDefault();
+    const x    = e.pageX - track.offsetLeft;
+    const walk = (x - startX) * 1.4;
+    track.scrollLeft = scrollLeft - walk;
+  });
+}
+
+// ── FIREBASE LOAD ──
+const app = initializeApp(FIREBASE_CONFIG);
+const db  = getFirestore(app);
+
+async function loadGallery() {
+  root.innerHTML = '';
+  let hasAny = false;
+
+  for (const cat of CATS) {
+    const snap   = await getDocs(query(collection(db, 'gallery', cat.id, 'photos'), orderBy('order')));
+    const photos = snap.docs.map(d => ({ id: d.id, ...d.data() }));
+    if (!photos.length) continue;
+    hasAny = true;
+
+    const sec = document.createElement('div');
+    sec.className = 'gallery-section';
+    sec.innerHTML = `
+      <h2 class="gallery-title">${cat.label}</h2>
+      <p class="gallery-count">${photos.length} photo${photos.length !== 1 ? 's' : ''}</p>
+      <div class="slider-wrap">
+        <div class="slider-track"></div>
+      </div>
+      <p class="slider-hint">Drag or swipe to browse</p>
+    `;
+    root.appendChild(sec);
+
+    const track = sec.querySelector('.slider-track');
+    setupDrag(track);
+
+    photos.forEach((photo, idx) => {
+      const item = document.createElement('div');
+      item.className = 'slide-item';
+      item.innerHTML = `
+        <img src="${photo.url}" alt="Photo ${idx + 1}" loading="lazy">
+        <div class="slide-item-num">#${idx + 1}</div>
+      `;
+      item.addEventListener('click', () => openLb(photos, idx, cat.label));
+      track.appendChild(item);
     });
   }
+
+  if (!hasAny) {
+    root.innerHTML = `
+      <div style="text-align:center;padding:60px 20px;color:rgba(240,238,234,0.3)">
+        <div style="font-size:36px;margin-bottom:12px">📷</div>
+        Gallery coming soon.
+      </div>`;
+  }
+}
+
+loadGallery().catch(() => {
+  root.innerHTML = '<div class="gallery-loading">Failed to load gallery. Please refresh.</div>';
+});
 </script>
 </body>
 </html>
