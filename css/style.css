@@ -530,3 +530,40 @@ img { max-width: 100%; display: block; }
   .floating-cta { bottom: 16px; right: 14px; }
   .floating-btn { font-size: 12px; padding: 11px 16px; }
 }
+
+/* ── QUOTE CTA BOX (모바일 반응형) ── */
+.quote-cta-box {
+  border: 1px solid rgba(212,168,67,0.2);
+  border-radius: 24px;
+  background: linear-gradient(135deg,#0a0900,#0f0f00,#0a0900);
+  padding: 48px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  align-items: center;
+  box-shadow: 0 0 80px rgba(212,168,67,0.05);
+}
+.quote-cta-upload {
+  display: block;
+  border: 1.5px dashed rgba(212,168,67,0.35);
+  border-radius: 16px;
+  background: rgba(212,168,67,0.03);
+  padding: 40px 24px;
+  text-align: center;
+  cursor: pointer;
+  text-decoration: none;
+  color: var(--text);
+  transition: border-color 0.2s, background 0.2s;
+}
+.quote-cta-upload:hover {
+  border-color: rgba(212,168,67,0.6);
+  background: rgba(212,168,67,0.06);
+}
+@media (max-width: 768px) {
+  .quote-cta-box {
+    grid-template-columns: 1fr;
+    padding: 28px 22px;
+    gap: 24px;
+  }
+  .quote-cta-upload { padding: 28px 20px; }
+}
