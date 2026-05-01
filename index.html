@@ -58,7 +58,7 @@
       </div>
       <div class="hero-media">
         <div class="hero-video">
-          <video class="hero-video-el" autoplay muted loop playsinline preload="metadata" poster="images/hero.jpg">
+          <video class="hero-video-el" autoplay muted loop playsinline preload="metadata" >
             <source src="images/hero.mp4" type="video/mp4">
           </video>
         </div>
@@ -117,11 +117,12 @@
           <a class="proof-visual" href="gallery.html" aria-label="View Gallery" id="proofVisual" style="background:var(--panel2)">
             <img id="proofImg" src="" alt="Detailing results" style="transition:opacity 0.4s;display:none;width:100%;height:100%;object-fit:cover">
             <div class="proof-visual-overlay">
-              <div class="proof-visual-badge">Gallery</div>
+              <div class="proof-visual-badge" id="proofBadge">Gallery</div>
               <div class="proof-visual-title" id="proofTitle">LATEST WORK</div>
               <div class="proof-visual-sub">Tap to view full gallery</div>
             </div>
           </a>
+          <div id="proofDots" style="display:flex;gap:6px;justify-content:center;margin-top:12px"></div>
         </div>
       </div>
     </div>
