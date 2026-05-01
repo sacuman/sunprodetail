@@ -114,8 +114,8 @@
           <p class="muted">Final pricing varies by vehicle size, paint condition, and required level of correction.</p>
         </div>
         <div class="proof-media">
-          <a class="proof-visual" href="gallery.html" aria-label="View Gallery" id="proofVisual">
-            <img id="proofImg" src="images/proof-hero.jpg" alt="Detailing results" loading="lazy" style="transition:opacity 0.4s">
+          <a class="proof-visual" href="gallery.html" aria-label="View Gallery" id="proofVisual" style="background:var(--panel2)">
+            <img id="proofImg" src="" alt="Detailing results" style="transition:opacity 0.4s;display:none;width:100%;height:100%;object-fit:cover">
             <div class="proof-visual-overlay">
               <div class="proof-visual-badge">Gallery</div>
               <div class="proof-visual-title" id="proofTitle">LATEST WORK</div>
@@ -227,7 +227,12 @@ async function loadProofPhotos() {
     } catch {}
   }
 
-  if (photos.length === 0) return; // Firebase 사진 없으면 기존 이미지 유지
+  if (photos.length === 0) {
+    // 사진 없으면 placeholder 텍스트 표시
+    const overlay = document.querySelector('.proof-visual-overlay');
+    if (overlay) overlay.style.opacity = '1';
+    return;
+  }
 
   let current = 0;
 
@@ -244,6 +249,7 @@ async function loadProofPhotos() {
     proofImg.style.opacity = '0';
     setTimeout(() => {
       proofImg.src    = photos[idx].url;
+      proofImg.style.display = 'block';
       proofImg.style.opacity = '1';
       if (proofBadge) proofBadge.textContent = 'Gallery';
       if (proofTitle) proofTitle.textContent = photos[idx].label;
