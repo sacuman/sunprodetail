@@ -325,6 +325,23 @@ document.getElementById('contactForm').addEventListener('submit', async e => {
     bar.style.width      = '100%';
     upStatus.textContent = 'Done!';
 
+    // 3. Formspree 알림 이메일 (텍스트만 — 사진은 어드민에서 확인)
+    try {
+      const alertData = new FormData();
+      alertData.append('name',    name);
+      alertData.append('phone',   phone);
+      alertData.append('email',   email);
+      alertData.append('vehicle', vehicle || 'Not provided');
+      alertData.append('service', service || 'Not specified');
+      alertData.append('message', message || 'No message');
+      alertData.append('photos',  photoURLs.length + ' photo(s) — view at sunprodetail.com/admin.html');
+      await fetch('https://formspree.io/f/mgonoojp', {
+        method: 'POST',
+        body: alertData,
+        headers: { Accept: 'application/json' }
+      });
+    } catch {}
+
     // 성공
     setTimeout(() => { progress.style.display = 'none'; }, 800);
     modal.hidden               = false;
