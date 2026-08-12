@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Gallery | SUN PRO Car Detailing</title>
+  <meta name="description" content="See real SUN PRO detailing, paint correction and ceramic coating results completed in Wangara, Perth." />
   <link rel="stylesheet" href="css/style.css" />
   <style>
     /* ── GALLERY SLIDER ── */
@@ -143,11 +144,39 @@
     }
     @keyframes spin { to{transform:rotate(360deg)} }
 
+    /* ── FILTERABLE WORK GRID ── */
+    .gallery-toolbar { display:flex; align-items:center; justify-content:space-between; gap:20px; margin-bottom:24px; padding-bottom:18px; border-bottom:1px solid var(--border); }
+    .gallery-toolbar > p { color:var(--muted2); font-size:11px; font-weight:700; letter-spacing:.09em; text-transform:uppercase; white-space:nowrap; }
+    .gallery-filters { display:flex; gap:8px; flex-wrap:wrap; }
+    .gallery-filter { display:flex; align-items:center; gap:7px; padding:9px 13px; border:1px solid var(--border2); border-radius:999px; background:transparent; color:var(--muted); font:inherit; font-size:11px; font-weight:700; cursor:pointer; transition:all .18s ease; }
+    .gallery-filter span { min-width:18px; padding:1px 5px; border-radius:999px; background:rgba(255,255,255,.06); color:var(--muted2); font-size:9px; text-align:center; }
+    .gallery-filter:hover, .gallery-filter.is-active { border-color:var(--gold); background:rgba(212,168,67,.09); color:var(--gold-lt); }
+    .work-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+    .work-card { position:relative; overflow:hidden; aspect-ratio:1/1; padding:0; border:1px solid var(--border); border-radius:14px; background:#080808; color:#fff; cursor:pointer; text-align:left; transition:transform .2s ease,border-color .2s ease; }
+    .work-card:hover { transform:translateY(-3px); border-color:rgba(212,168,67,.45); }
+    .work-card img { width:100%; height:100%; object-fit:contain; transition:transform .35s ease; }
+    .work-card:hover img { transform:scale(1.02); }
+    .work-card::after { content:''; position:absolute; inset:0; background:linear-gradient(180deg,transparent 58%,rgba(5,5,5,.82)); pointer-events:none; }
+    .work-card-meta { position:absolute; z-index:1; left:13px; right:13px; bottom:11px; display:flex; align-items:end; justify-content:space-between; gap:10px; }
+    .work-card-category { font-family:'Bebas Neue',sans-serif; font-size:18px; letter-spacing:.05em; }
+    .work-card-index { color:rgba(255,255,255,.5); font-size:9px; font-weight:700; }
+    .work-latest { position:absolute; z-index:1; top:10px; left:10px; padding:4px 8px; border-radius:4px; background:var(--gold); color:#050505; font-size:8px; font-weight:900; letter-spacing:.11em; text-transform:uppercase; }
+    .gallery-more { display:block; margin:24px auto 0; padding:11px 22px; border:1px solid var(--border2); border-radius:8px; background:transparent; color:var(--text); font:inherit; font-size:11px; font-weight:800; letter-spacing:.08em; text-transform:uppercase; cursor:pointer; }
+    .gallery-more[hidden] { display:none; }
+    .gallery-empty { grid-column:1/-1; padding:64px 20px; text-align:center; color:var(--muted2); }
+
     @media (max-width: 640px) {
       .slide-item { width: 200px; }
       .lb-nav { width: 40px; height: 40px; font-size: 20px; }
       #lb-prev { left: 6px; }
       #lb-next { right: 6px; }
+      .gallery-toolbar { align-items:flex-start; flex-direction:column; }
+      .gallery-toolbar > p { order:-1; }
+      .gallery-filters { width:100%; display:grid; grid-template-columns:1fr 1fr; }
+      .gallery-filter { justify-content:space-between; }
+      .work-grid { grid-template-columns:1fr 1fr; gap:8px; }
+      .work-card-category { font-size:14px; }
+      .work-card-meta { left:9px; right:9px; bottom:8px; }
     }
   </style>
 </head>
@@ -164,33 +193,44 @@
     </button>
     <nav class="nav">
       <a href="services.html">Services</a>
-      <a href="gallery.html">Gallery</a>
+      <a href="gallery.html">Our Work</a>
       <a href="locations.html">Locations</a>
-      <a href="about.html">About</a>
       <a href="faq.html">FAQ</a>
-      <a href="contact.html">Contact</a>
-      <a class="btn" href="contact.html">Enquire</a>
-      <a class="btn primary" href="contact.html#book">Book</a>
+      <a href="about.html">About</a>
+      <a class="btn" href="sms:0416795345">Text Photos</a>
+      <a class="btn primary" href="contact.html#book">Get a Quote</a>
     </nav>
   </div>
 </header>
+<aside class="appointment-strip" aria-label="Booking information"><div class="container appointment-strip-inner"><strong>Advance bookings only</strong><span>Same-day service is not available. Send photos by text or online for a quote and available dates.</span><a href="contact.html#book">How to enquire <span aria-hidden="true">→</span></a></div></aside>
 
 <main>
   <section class="page-head">
     <div class="container">
       <div class="kicker">Our Work</div>
       <h1 class="page-title">REAL<br><span class="gold">RESULTS</span></h1>
-      <p class="page-sub">Swipe or drag to browse. Tap any photo to enlarge.</p>
+      <p class="page-sub">Every photo shown here is from our own work. Newest work appears first — filter by service and tap any photo to enlarge.</p>
     </div>
   </section>
 
   <section class="section gallery-first-section">
-    <div class="container" id="galleryRoot">
-      <div class="gallery-loading">
-        <div class="gallery-spinner"></div><br>Loading gallery…
+    <div class="container">
+      <div class="gallery-toolbar">
+        <div class="gallery-filters" aria-label="Filter work by service">
+          <button class="gallery-filter is-active" type="button" data-filter="all">All Work <span id="count-all">0</span></button>
+          <button class="gallery-filter" type="button" data-filter="refresh">Refresh <span id="count-refresh">0</span></button>
+          <button class="gallery-filter" type="button" data-filter="correction">Paint Correction <span id="count-correction">0</span></button>
+          <button class="gallery-filter" type="button" data-filter="ceramic">Ceramic <span id="count-ceramic">0</span></button>
+        </div>
+        <p>Newest uploads first</p>
       </div>
+      <div id="galleryRoot">
+        <div class="gallery-loading"><div class="gallery-spinner"></div><br>Loading gallery…</div>
+      </div>
+      <button class="gallery-more" id="galleryMore" type="button" hidden>Show More Work</button>
     </div>
   </section>
+  <section class="end-cta"><div class="container end-cta-inner"><div><h3>WANT A RESULT LIKE THIS?</h3><p>Send photos of your car and we'll reply with the suitable service, price and available dates.</p></div><div class="end-cta-actions"><a class="btn-solid" href="sms:0416795345">Text Photos</a><a class="btn-ghost" href="contact.html#book">Online Quote</a></div></div></section>
 </main>
 
 <!-- LIGHTBOX -->
@@ -203,13 +243,15 @@
   <div id="lb-count"></div>
 </div>
 
+<div class="floating-cta"><a class="floating-btn message" href="sms:0416795345">Text Photos</a><a class="floating-btn quote" href="contact.html#book">Online Quote</a></div>
 <footer class="footer">
   <div class="container footer-inner">
     <div>© 2026 SUN PRO Car Detailing</div>
     <div class="footer-links">
-      <a href="services.html">Services</a>
-      <a href="gallery.html">Gallery</a>
-      <a href="contact.html">Contact</a>
+      <a href="gallery.html">Our Work</a>
+      <a href="sms:0416795345">Text</a>
+      <a href="mailto:hello@sunprodetail.com">Email</a>
+      <a href="contact.html#book">Photo Quote</a>
     </div>
   </div>
 </footer>
@@ -237,7 +279,7 @@ const FIREBASE_CONFIG = {
 };
 
 import { initializeApp }   from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
-import { getFirestore, collection, getDocs, query, orderBy }
+import { getFirestore, collection, getDocs }
   from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
 
 const root = document.getElementById('galleryRoot');
@@ -248,16 +290,14 @@ const CATS = [
 ];
 
 // ── LIGHTBOX ──
-let lbPhotos = [], lbIdx = 0, lbCatLabel = '';
+let lbPhotos = [], lbIdx = 0;
 const lb      = document.getElementById('lightbox');
 const lbImg   = document.getElementById('lb-img');
 const lbCount = document.getElementById('lb-count');
 const lbCat   = document.getElementById('lb-cat');
 
-function openLb(photos, idx, catLabel) {
-  lbPhotos = photos; lbIdx = idx; lbCatLabel = catLabel;
-  lbImg.src = photos[idx].url;
-  lbCat.textContent = catLabel;
+function openLb(photos, idx) {
+  lbPhotos = photos; lbIdx = idx;
   lb.classList.add('open');
   updateLb();
   document.body.style.overflow = 'hidden';
@@ -267,16 +307,16 @@ function closeLb() {
   document.body.style.overflow = '';
 }
 function updateLb() {
+  lbImg.src = lbPhotos[lbIdx].url;
+  lbCat.textContent = lbPhotos[lbIdx].catLabel;
   lbCount.textContent = `${lbIdx + 1} / ${lbPhotos.length}`;
 }
 function prevLb() {
   lbIdx = (lbIdx - 1 + lbPhotos.length) % lbPhotos.length;
-  lbImg.src = lbPhotos[lbIdx].url;
   updateLb();
 }
 function nextLb() {
   lbIdx = (lbIdx + 1) % lbPhotos.length;
-  lbImg.src = lbPhotos[lbIdx].url;
   updateLb();
 }
 
@@ -321,52 +361,81 @@ function setupDrag(track) {
 // ── FIREBASE LOAD ──
 const app = initializeApp(FIREBASE_CONFIG);
 const db  = getFirestore(app);
+const moreBtn = document.getElementById('galleryMore');
+let allPhotos = [];
+let activeFilter = 'all';
+let visibleCount = 12;
+
+function uploadedTime(photo) {
+  if (typeof photo.uploadedAt === 'number') return photo.uploadedAt;
+  if (photo.uploadedAt?.toMillis) return photo.uploadedAt.toMillis();
+  return 0;
+}
+
+function renderGallery() {
+  const filtered = activeFilter === 'all' ? allPhotos : allPhotos.filter(photo => photo.catId === activeFilter);
+  const visible = filtered.slice(0, visibleCount);
+  root.innerHTML = '';
+
+  const grid = document.createElement('div');
+  grid.className = 'work-grid';
+  root.appendChild(grid);
+
+  if (!visible.length) {
+    grid.innerHTML = '<div class="gallery-empty">No work photos in this category yet.</div>';
+    moreBtn.hidden = true;
+    return;
+  }
+
+  visible.forEach((photo, idx) => {
+    const card = document.createElement('button');
+    card.type = 'button';
+    card.className = 'work-card';
+    card.setAttribute('aria-label', `Open ${photo.catLabel} result ${idx + 1}`);
+    const isLatest = allPhotos.indexOf(photo) < 3;
+    card.innerHTML = `
+      <img src="${photo.url}" alt="Actual SunPro ${photo.catLabel.toLowerCase()} work" loading="lazy">
+      ${isLatest ? '<span class="work-latest">Latest</span>' : ''}
+      <span class="work-card-meta"><strong class="work-card-category">${photo.catLabel}</strong><span class="work-card-index">${idx + 1} / ${filtered.length}</span></span>
+    `;
+    card.addEventListener('click', () => openLb(filtered, idx));
+    grid.appendChild(card);
+  });
+
+  moreBtn.hidden = visible.length >= filtered.length;
+}
 
 async function loadGallery() {
-  root.innerHTML = '';
-  let hasAny = false;
-
+  allPhotos = [];
   for (const cat of CATS) {
-    const snap   = await getDocs(query(collection(db, 'gallery', cat.id, 'photos'), orderBy('order')));
-    const photos = snap.docs.map(d => ({ id: d.id, ...d.data() }));
-    if (!photos.length) continue;
-    hasAny = true;
-
-    const sec = document.createElement('div');
-    sec.className = 'gallery-section';
-    sec.innerHTML = `
-      <h2 class="gallery-title">${cat.label}</h2>
-      <p class="gallery-count">${photos.length} photo${photos.length !== 1 ? 's' : ''}</p>
-      <div class="slider-wrap">
-        <div class="slider-track"></div>
-      </div>
-      <p class="slider-hint">Drag or swipe to browse</p>
-    `;
-    root.appendChild(sec);
-
-    const track = sec.querySelector('.slider-track');
-    setupDrag(track);
-
-    photos.forEach((photo, idx) => {
-      const item = document.createElement('div');
-      item.className = 'slide-item';
-      item.innerHTML = `
-        <img src="${photo.url}" alt="Photo ${idx + 1}" loading="lazy">
-        <div class="slide-item-num">#${idx + 1}</div>
-      `;
-      item.addEventListener('click', () => openLb(photos, idx, cat.label));
-      track.appendChild(item);
-    });
+    try {
+      const snap = await getDocs(collection(db, 'gallery', cat.id, 'photos'));
+      snap.docs.forEach(doc => allPhotos.push({id:doc.id, catId:cat.id, catLabel:cat.label, ...doc.data()}));
+    } catch {}
   }
 
-  if (!hasAny) {
-    root.innerHTML = `
-      <div style="text-align:center;padding:60px 20px;color:rgba(240,238,234,0.3)">
-        <div style="font-size:36px;margin-bottom:12px">📷</div>
-        Gallery coming soon.
-      </div>`;
-  }
+  allPhotos.sort((a, b) => uploadedTime(b) - uploadedTime(a) || (a.order || 0) - (b.order || 0));
+  document.getElementById('count-all').textContent = allPhotos.length;
+  CATS.forEach(cat => {
+    document.getElementById(`count-${cat.id}`).textContent = allPhotos.filter(photo => photo.catId === cat.id).length;
+  });
+  renderGallery();
 }
+
+document.querySelectorAll('.gallery-filter').forEach(button => {
+  button.addEventListener('click', () => {
+    document.querySelectorAll('.gallery-filter').forEach(item => item.classList.remove('is-active'));
+    button.classList.add('is-active');
+    activeFilter = button.dataset.filter;
+    visibleCount = 12;
+    renderGallery();
+  });
+});
+
+moreBtn.addEventListener('click', () => {
+  visibleCount += 12;
+  renderGallery();
+});
 
 loadGallery().catch(() => {
   root.innerHTML = '<div class="gallery-loading">Failed to load gallery. Please refresh.</div>';

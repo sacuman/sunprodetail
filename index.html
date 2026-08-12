@@ -3,7 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>SUN PRO Car Detailing | Wangara</title>
+  <title>Car Detailing Wangara | SUN PRO Car Detailing</title>
+  <meta name="description" content="Professional car detailing in Wangara, Perth. Refresh detailing, paint correction and ceramic coating by appointment. Upload photos for an accurate quote." />
+  <meta name="theme-color" content="#050505" />
+  <meta property="og:title" content="SUN PRO Car Detailing | Wangara" />
+  <meta property="og:description" content="Professional detailing, paint correction and ceramic coating. Real results, tailored to your car." />
+  <meta property="og:image" content="https://sunprodetail.com/images/real/hero-results.jpg" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://sunprodetail.com/" />
+  <link rel="canonical" href="https://sunprodetail.com/" />
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
@@ -19,16 +27,23 @@
     </button>
     <nav class="nav">
       <a href="services.html">Services</a>
-      <a href="gallery.html">Gallery</a>
+      <a href="gallery.html">Our Work</a>
       <a href="locations.html">Locations</a>
-      <a href="about.html">About</a>
       <a href="faq.html">FAQ</a>
-      <a href="contact.html">Contact</a>
-      <a class="btn" href="contact.html">Enquire</a>
-      <a class="btn primary" href="contact.html#book">Book</a>
+      <a href="about.html">About</a>
+      <a class="btn" href="sms:0416795345">Text Photos</a>
+      <a class="btn primary" href="contact.html#book">Get a Quote</a>
     </nav>
   </div>
 </header>
+
+<aside class="appointment-strip" aria-label="Booking information">
+  <div class="container appointment-strip-inner">
+    <strong>Advance bookings only</strong>
+    <span>Same-day service is not available. Send photos by text or online for a quote and available dates.</span>
+    <a href="contact.html#book">How to enquire <span aria-hidden="true">→</span></a>
+  </div>
+</aside>
 
 <main>
 
@@ -36,32 +51,97 @@
   <section class="hero">
     <div class="container hero-inner">
       <div>
-        <div class="hero-eyebrow">By Appointment · Inside Wangara Motors</div>
+        <div class="hero-eyebrow">Professional Detailing · Wangara</div>
         <h1 class="hero-title">
-          <span>MAKE</span>
-          <span class="outline">YOUR CAR</span>
-          <span class="gold">SHINE.</span>
+          <span>REAL WORK.</span>
+          <span class="outline">REAL CARE.</span>
+          <span class="gold">REAL RESULTS.</span>
         </h1>
-        <p class="lead">Refresh detailing, paint correction, and ceramic coating — built for real results, not a quick wash.</p>
+        <p class="lead">Professional car detailing completed by appointment. Send us photos first and we'll recommend the right service, confirm the price and offer available dates.</p>
+        <div class="booking-pill"><span></span>No same-day service · Advance booking required</div>
         <div class="hero-cta">
-          <a class="btn primary" href="contact.html#book">📸 Upload Photos for Quote</a>
-          <a class="btn" href="services.html">View Services</a>
+          <a class="btn primary" href="sms:0416795345">Text Photos for a Quote</a>
+          <a class="btn" href="contact.html#book">Online Photo Quote</a>
           <a class="btn insta-real" href="https://instagram.com/sunprocardetailing" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
             <svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2Zm0 1.8A3.95 3.95 0 0 0 3.8 7.75v8.5a3.95 3.95 0 0 0 3.95 3.95h8.5a3.95 3.95 0 0 0 3.95-3.95v-8.5a3.95 3.95 0 0 0-3.95-3.95Zm8.9 1.35a1.1 1.1 0 1 1 0 2.2 1.1 1.1 0 0 1 0-2.2ZM12 6.85A5.15 5.15 0 1 1 6.85 12 5.16 5.16 0 0 1 12 6.85Zm0 1.8A3.35 3.35 0 1 0 15.35 12 3.36 3.36 0 0 0 12 8.65Z"/></svg>
           </a>
         </div>
         <div class="hero-stats">
-          <div><div class="hero-stat-num">15+</div><div class="hero-stat-label">Years Exp.</div></div>
-          <div><div class="hero-stat-num">25yr</div><div class="hero-stat-label">Senior Expertise</div></div>
+          <div><div class="hero-stat-num">15+</div><div class="hero-stat-label">Years Experience</div></div>
+          <div><div class="hero-stat-num">100%</div><div class="hero-stat-label">Our Work Shown</div></div>
           <div><div class="hero-stat-num">APPT</div><div class="hero-stat-label">Only · Wangara</div></div>
         </div>
       </div>
       <div class="hero-media">
-        <div class="hero-video">
-          <video class="hero-video-el" autoplay muted loop playsinline preload="metadata" >
-            <source src="images/hero.mp4" type="video/mp4">
-          </video>
+        <div class="hero-result-slider" id="heroResultSlider">
+          <div class="hero-result-badge"><span>100% OUR WORK</span><strong id="heroResultLabel">PAINT CORRECTION</strong></div>
+          <a class="hero-result" href="gallery.html" aria-label="View SunPro's real detailing results">
+            <img id="heroResultImg" src="images/real/hero-results.jpg" alt="Actual SunPro detailing result" fetchpriority="high">
+            <div class="hero-result-link">View more real results <span aria-hidden="true">→</span></div>
+          </a>
+          <div class="hero-result-dots" id="heroResultDots" aria-label="Choose a result photo"></div>
         </div>
+        <div class="hero-proof-note"><span aria-hidden="true">✓</span> Every result shown on this site is from our own work.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="quote-flow" aria-labelledby="quoteFlowTitle">
+    <div class="container quote-flow-inner">
+      <div class="quote-flow-heading">
+        <div class="kicker">Simple Enquiry</div>
+        <h2 id="quoteFlowTitle">SEND PHOTOS. GET THE RIGHT PLAN.</h2>
+      </div>
+      <div class="quote-flow-steps">
+        <div><span>1</span><strong>Send car photos</strong><p>Text them or use our online form.</p></div>
+        <div><span>2</span><strong>We assess the work</strong><p>We confirm the suitable service and price.</p></div>
+        <div><span>3</span><strong>Choose an available date</strong><p>Your booking is confirmed before you visit.</p></div>
+      </div>
+      <div class="quote-flow-actions">
+        <a class="btn primary" href="sms:0416795345">Text 0416 795 345</a>
+        <a class="btn" href="mailto:hello@sunprodetail.com?subject=SUN%20PRO%20quote%20request">Email for a Quote</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICE SELECTOR -->
+  <section class="service-picker" aria-labelledby="servicePickerTitle">
+    <div class="container">
+      <div class="service-picker-head">
+        <div>
+          <div class="kicker">Choose Your Result</div>
+          <h2 id="servicePickerTitle">WHAT DOES YOUR CAR NEED?</h2>
+        </div>
+        <a class="text-link" href="services.html">Compare all services <span aria-hidden="true">→</span></a>
+      </div>
+      <div class="home-services">
+        <a class="home-service-card" href="services.html#refresh">
+          <span class="home-service-num">01</span>
+          <div class="home-service-icon" aria-hidden="true">✦</div>
+          <h3>Refresh Detailing</h3>
+          <p>For a complete interior and exterior reset.</p>
+          <div class="home-service-meta"><span>Most popular</span><strong>From $290</strong></div>
+        </a>
+        <a class="home-service-card" href="services.html#paint">
+          <span class="home-service-num">02</span>
+          <div class="home-service-icon" aria-hidden="true">◈</div>
+          <h3>Paint Correction</h3>
+          <p>For swirls, light scratches, haze and tired paint.</p>
+          <div class="home-service-meta"><span>Restore gloss</span><strong>From $199</strong></div>
+        </a>
+        <a class="home-service-card featured" href="services.html#ceramic">
+          <span class="home-service-num">03</span>
+          <div class="home-service-icon" aria-hidden="true">◇</div>
+          <h3>Ceramic Coating</h3>
+          <p>For deep gloss and easier long-term maintenance.</p>
+          <div class="home-service-meta"><span>Protect longer</span><strong>From $750</strong></div>
+        </a>
+      </div>
+      <div class="trust-row" aria-label="SUN PRO service benefits">
+        <div><strong>15+ years</strong><span>Detailing experience</span></div>
+        <div><strong>Photo quotes</strong><span>Reviewed personally</span></div>
+        <div><strong>Real pricing</strong><span>Based on condition</span></div>
+        <div><strong>Wangara</strong><span>Inside Wangara Motors</span></div>
       </div>
     </div>
   </section>
@@ -102,29 +182,6 @@
           </ul>
         </article>
       </div>
-
-      <div class="proof">
-        <div class="proof-text">
-          <h3>REAL RESULTS, NOT A QUICK WASH</h3>
-          <p>We focus on professional detailing — inspection, decontamination, correction, and protection. If you want the paint to look "new again", this is the right process.</p>
-          <div class="proof-actions">
-            <a class="btn primary" href="services.html">See Services</a>
-            <a class="btn ghost" href="contact.html">Enquire</a>
-          </div>
-          <p class="muted">Final pricing varies by vehicle size, paint condition, and required level of correction.</p>
-        </div>
-        <div class="proof-media">
-          <a class="proof-visual" href="gallery.html" aria-label="View Gallery" id="proofVisual" style="background:var(--panel2)">
-            <img id="proofImg" src="" alt="Detailing results" style="transition:opacity 0.4s;display:none;width:100%;height:100%;object-fit:cover">
-            <div class="proof-visual-overlay">
-              <div class="proof-visual-badge" id="proofBadge">Gallery</div>
-              <div class="proof-visual-title" id="proofTitle">LATEST WORK</div>
-              <div class="proof-visual-sub">Tap to view full gallery</div>
-            </div>
-          </a>
-          <div id="proofDots" style="display:flex;gap:6px;justify-content:center;margin-top:12px"></div>
-        </div>
-      </div>
     </div>
   </section>
 
@@ -136,12 +193,12 @@
           <div class="kicker">Photo Quote</div>
           <h2 style="font-family:'Bebas Neue',sans-serif;font-size:clamp(36px,5vw,64px);letter-spacing:0.02em;line-height:0.94;margin-bottom:14px">UPLOAD PHOTOS — GET A REAL QUOTE</h2>
           <p style="font-size:15px;color:var(--muted);line-height:1.78;margin-bottom:24px">We review every photo personally. No automated pricing — just honest advice and accurate quotes based on your car's actual condition.</p>
-          <a class="btn primary" href="contact.html#book">📸 Upload Car Photos</a>
+          <a class="btn primary" href="contact.html#book">Upload Car Photos</a>
         </div>
         <a href="contact.html#book" class="quote-cta-upload">
-          <div style="font-size:40px;margin-bottom:12px">📷</div>
-          <div style="font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:0.06em;margin-bottom:8px">DROP PHOTOS HERE</div>
-          <div style="font-size:13px;color:var(--muted2);line-height:1.6">JPG · PNG · HEIC · up to 10 photos<br>We reply within a few hours</div>
+          <div class="quote-cta-symbol" aria-hidden="true">+</div>
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:0.06em;margin-bottom:8px">ADD YOUR CAR PHOTOS</div>
+          <div style="font-size:13px;color:var(--muted2);line-height:1.6">JPG · PNG · HEIC · up to 10 photos<br>Receive pricing and available dates by text or email</div>
         </a>
       </div>
     </div>
@@ -149,15 +206,13 @@
 
 </main>
 
-<!-- FLOATING CTA (모바일) -->
+<!-- QUICK CONTACT (MOBILE) -->
 <div class="floating-cta">
-  <a class="floating-btn call" href="tel:0416795345">
-    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1-9.4 0-17-7.6-17-17 0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1L6.6 10.8z"/></svg>
-    Call 0416 795 345
+  <a class="floating-btn message" href="sms:0416795345">
+    Text Photos
   </a>
   <a class="floating-btn quote" href="contact.html#book">
-    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
-    📸 Get a Quote
+    Online Quote
   </a>
 </div>
 
@@ -165,9 +220,10 @@
   <div class="container footer-inner">
     <div>© 2026 SUN PRO Car Detailing</div>
     <div class="footer-links">
-      <a href="services.html">Services</a>
-      <a href="gallery.html">Gallery</a>
-      <a href="contact.html">Contact</a>
+      <a href="gallery.html">Our Work</a>
+      <a href="sms:0416795345">Text</a>
+      <a href="mailto:hello@sunprodetail.com">Email</a>
+      <a href="contact.html#book">Photo Quote</a>
     </div>
   </div>
 </footer>
@@ -184,7 +240,7 @@ if (menuToggle && nav) {
 </script>
 
 <script type="module">
-// Firebase — 각 카테고리 첫 번째 사진을 메인 페이지에 자동 표시
+// Firebase — 실제 작업 갤러리 사진을 첫 화면에서 자동 전환
 const FIREBASE_CONFIG = {
   apiKey:            "AIzaSyC8gEAuf2im-PZIpaJkj736J6QBizh9QVU",
   authDomain:        "sunpro-detailing.firebaseapp.com",
@@ -195,7 +251,7 @@ const FIREBASE_CONFIG = {
 };
 
 import { initializeApp }   from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
-import { getFirestore, collection, getDocs, query, orderBy, limit }
+import { getFirestore, collection, getDocs }
   from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
 
 const app = initializeApp(FIREBASE_CONFIG);
@@ -207,70 +263,88 @@ const CATS = [
   { id:'ceramic',    label:'CERAMIC COATING'   }
 ];
 
-const proofImg   = document.getElementById('proofImg');
-const proofBadge = document.getElementById('proofBadge');
-const proofTitle = document.getElementById('proofTitle');
-const proofDots  = document.getElementById('proofDots');
+const heroSlider = document.getElementById('heroResultSlider');
+const heroImg    = document.getElementById('heroResultImg');
+const heroLabel  = document.getElementById('heroResultLabel');
+const heroDots   = document.getElementById('heroResultDots');
+const fallbackPhotos = [
+  { url:'images/real/hero-results.jpg', label:'PAINT CORRECTION' },
+  { url:'images/real/refresh-result.jpg', label:'REFRESH DETAILING' },
+  { url:'images/real/paint-result.jpg', label:'PAINT RESTORATION' },
+  { url:'images/real/ceramic-result.jpg', label:'CERAMIC COATING' }
+];
 
-async function loadProofPhotos() {
-  const photos = [];
+async function loadHeroPhotos() {
+  const galleryPhotos = [];
 
-  // 각 카테고리에서 첫 번째 사진 가져오기
+  // 모든 카테고리의 사진을 가져온 뒤 무작위로 섞기
   for (const cat of CATS) {
     try {
-      const snap = await getDocs(query(
-        collection(db, 'gallery', cat.id, 'photos'),
-        orderBy('order'), limit(1)
-      ));
-      if (!snap.empty) {
-        photos.push({ url: snap.docs[0].data().url, label: cat.label });
-      }
+      const snap = await getDocs(collection(db, 'gallery', cat.id, 'photos'));
+      snap.docs.forEach(doc => galleryPhotos.push({ id:doc.id, url:doc.data().url, label:cat.label }));
     } catch {}
   }
 
-  if (photos.length === 0) {
-    // 사진 없으면 placeholder 텍스트 표시
-    const overlay = document.querySelector('.proof-visual-overlay');
-    if (overlay) overlay.style.opacity = '1';
-    return;
+  const photos = galleryPhotos.length ? galleryPhotos : fallbackPhotos.map((photo, i) => ({...photo, id:`fallback-${i}`}));
+  for (let i = photos.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [photos[i], photos[j]] = [photos[j], photos[i]];
   }
 
+  const lastHeroId = sessionStorage.getItem('sunproLastHeroId');
+  if (photos.length > 1 && photos[0].id === lastHeroId) {
+    [photos[0], photos[1]] = [photos[1], photos[0]];
+  }
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   let current = 0;
+  let timer;
 
-  // 도트 생성
+  // 사진 선택 도트
+  heroDots.innerHTML = '';
   photos.forEach((_, i) => {
-    const dot = document.createElement('div');
-    dot.style.cssText = `width:6px;height:6px;border-radius:50%;background:${i===0?'var(--gold)':'rgba(255,255,255,0.25)'};cursor:pointer;transition:background 0.2s`;
-    dot.addEventListener('click', () => showPhoto(i));
-    proofDots.appendChild(dot);
+    const dot = document.createElement('button');
+    dot.type = 'button';
+    dot.className = 'hero-result-dot';
+    dot.setAttribute('aria-label', `Show result ${i + 1}`);
+    dot.addEventListener('click', () => {
+      showPhoto(i);
+      if (!reduceMotion) startAuto();
+    });
+    heroDots.appendChild(dot);
   });
 
   function showPhoto(idx) {
     current = idx;
-    proofImg.style.opacity = '0';
+    heroSlider.classList.add('is-switching');
     setTimeout(() => {
-      proofImg.src    = photos[idx].url;
-      proofImg.style.display = 'block';
-      proofImg.style.opacity = '1';
-      if (proofBadge) proofBadge.textContent = 'Gallery';
-      if (proofTitle) proofTitle.textContent = photos[idx].label;
-    }, 200);
-    // 도트 업데이트
-    proofDots.querySelectorAll('div').forEach((d, i) => {
-      d.style.background = i === idx ? 'var(--gold)' : 'rgba(255,255,255,0.25)';
-    });
+      heroImg.src = photos[idx].url;
+      heroImg.alt = `Actual SunPro ${photos[idx].label.toLowerCase()} result`;
+      heroLabel.textContent = photos[idx].label;
+      heroSlider.classList.remove('is-switching');
+      sessionStorage.setItem('sunproLastHeroId', photos[idx].id);
+      const seen = JSON.parse(sessionStorage.getItem('sunproHeroSeen') || '[]');
+      sessionStorage.setItem('sunproHeroSeen', JSON.stringify([...new Set([...seen, photos[idx].id])].slice(-12)));
+    }, 360);
+    heroDots.querySelectorAll('button').forEach((dot, i) => dot.classList.toggle('is-active', i === idx));
   }
 
-  // 첫 번째 사진 표시
   showPhoto(0);
 
-  // 5초마다 자동 전환
-  setInterval(() => {
-    showPhoto((current + 1) % photos.length);
-  }, 5000);
+  function startAuto() {
+    clearInterval(timer);
+    timer = setInterval(() => showPhoto((current + 1) % photos.length), 4800);
+  }
+
+  if (!reduceMotion) {
+    startAuto();
+    heroSlider.addEventListener('mouseenter', () => clearInterval(timer));
+    heroSlider.addEventListener('mouseleave', startAuto);
+    heroSlider.addEventListener('focusin', () => clearInterval(timer));
+    heroSlider.addEventListener('focusout', startAuto);
+  }
 }
 
-loadProofPhotos().catch(() => {}); // 실패해도 기존 이미지 유지
+loadHeroPhotos().catch(() => {}); // 실패해도 첫 실제 작업 사진 유지
 </script>
 </body>
 </html>

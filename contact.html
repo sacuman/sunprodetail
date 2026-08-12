@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Contact & Quote | SUN PRO Car Detailing</title>
+  <meta name="description" content="Request a SUN PRO car detailing quote by text, email or online photo form. Advance bookings only in Wangara; same-day service is not available." />
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
@@ -19,23 +20,23 @@
     </button>
     <nav class="nav">
       <a href="services.html">Services</a>
-      <a href="gallery.html">Gallery</a>
+      <a href="gallery.html">Our Work</a>
       <a href="locations.html">Locations</a>
-      <a href="about.html">About</a>
       <a href="faq.html">FAQ</a>
-      <a href="contact.html">Contact</a>
-      <a class="btn" href="contact.html">Enquire</a>
-      <a class="btn primary" href="contact.html#book">Book</a>
+      <a href="about.html">About</a>
+      <a class="btn" href="sms:0416795345">Text Photos</a>
+      <a class="btn primary" href="contact.html#book">Get a Quote</a>
     </nav>
   </div>
 </header>
+<aside class="appointment-strip" aria-label="Booking information"><div class="container appointment-strip-inner"><strong>Advance bookings only</strong><span>Same-day service is not available. Text, email or upload photos for a quote and available dates.</span><a href="#book">Start enquiry <span aria-hidden="true">↓</span></a></div></aside>
 
 <main>
   <section class="page-head">
     <div class="container">
-      <div class="kicker">Get in Touch</div>
-      <h1 class="page-title">CONTACT<br><span class="gold">& QUOTE</span></h1>
-      <p class="page-sub">Upload photos of your car — we review them personally and reply with accurate pricing.</p>
+      <div class="kicker">Simple Photo Quote</div>
+      <h1 class="page-title">GET A<br><span class="gold">REAL QUOTE</span></h1>
+      <p class="page-sub">Send photos and your vehicle details. We review them personally and reply by text or email with pricing and available dates.</p>
     </div>
   </section>
 
@@ -44,10 +45,11 @@
 
       <div class="contact-hero-card">
         <p class="contact-kicker">How It Works</p>
-        <h2 class="contact-title">PHOTO QUOTE — FAST & ACCURATE</h2>
+        <h2 class="contact-title">PHOTOS FIRST. NO GUESSWORK.</h2>
         <p class="contact-lead">
-          Upload photos of your vehicle — paint issues, scratches, stains, or interior condition — and we'll review them personally and get back with honest pricing.
+          Upload photos of the vehicle, paint issues, scratches, stains or interior condition. We will recommend the suitable service, confirm the price and then offer an available booking date.
         </p>
+        <div class="contact-booking-rule"><strong>Please note:</strong> We do not offer same-day or walk-in service. Sending an enquiry does not confirm a booking.</div>
       </div>
 
       <div class="contact-grid">
@@ -55,17 +57,26 @@
         <!-- LEFT -->
         <div class="contact-info-panel">
           <div class="contact-info-card">
-            <h3>Call / Text</h3>
+            <p class="contact-kicker">Preferred</p>
+            <h3>Text Vehicle Photos</h3>
             <p>0416 795 345</p>
             <div class="contact-info-actions">
-              <a class="btn primary" href="tel:0416795345">Call Now</a>
-              <a class="btn" href="sms:0416795345">Text Us</a>
+              <a class="btn primary" href="sms:0416795345">Start a Text</a>
+            </div>
+          </div>
+
+          <div class="contact-info-card">
+            <p class="contact-kicker">Email</p>
+            <h3>Email Your Details</h3>
+            <p class="contact-email">hello@sunprodetail.com</p>
+            <div class="contact-info-actions">
+              <a class="btn" href="mailto:hello@sunprodetail.com?subject=SUN%20PRO%20quote%20request">Write an Email</a>
             </div>
           </div>
 
           <div class="contact-tip-card">
-            <h3>Why send photos?</h3>
-            <p>Every car is different. Photos of the paint, interior, and problem areas let us give you a real number — not a guess. We review all photos personally.</p>
+            <h3>Why text or email?</h3>
+            <p>We may be working on a vehicle and unable to answer calls. Written enquiries also let us review your photos properly and reply with accurate information.</p>
           </div>
 
           <div class="contact-tip-card">
@@ -81,8 +92,9 @@
         <div class="contact-form-panel" id="book">
           <div class="contact-form-card">
             <p class="contact-kicker">Request a Quote</p>
-            <h2 class="contact-form-title">SEND YOUR DETAILS</h2>
-            <p class="contact-form-sub">Fill in the form and attach photos. We'll reply with accurate pricing.</p>
+            <h2 class="contact-form-title">ONLINE PHOTO QUOTE</h2>
+            <p class="contact-form-sub">Only your name and one reply method are needed. Photos help us give a much more accurate quote.</p>
+            <div class="form-booking-banner"><strong>Advance appointment required</strong><span>No same-day service. We will offer available dates after reviewing your enquiry.</span></div>
 
             <form id="contactForm" class="contact-form" novalidate>
 
@@ -92,17 +104,22 @@
                   <input type="text" id="name" placeholder="Your name" required />
                 </div>
                 <div class="form-field">
-                  <label for="phone">Phone</label>
-                  <input type="tel" id="phone" placeholder="Your phone number" required />
+                  <label for="phone">Mobile <span>(for a text reply)</span></label>
+                  <input type="tel" id="phone" inputmode="tel" placeholder="Optional if using email" />
                 </div>
                 <div class="form-field">
-                  <label for="email">Email</label>
-                  <input type="email" id="email" placeholder="Your email address" required />
+                  <label for="email">Email <span>(for an email reply)</span></label>
+                  <input type="email" id="email" inputmode="email" placeholder="Optional if using mobile" />
                 </div>
                 <div class="form-field">
                   <label for="vehicle">Vehicle</label>
-                  <input type="text" id="vehicle" placeholder="Make / Model / Year" />
+                  <input type="text" id="vehicle" placeholder="Make / Model / Year" required />
                 </div>
+              </div>
+
+              <div class="form-field">
+                <label for="preferredDate">Preferred Date or Timeframe <span>(optional)</span></label>
+                <input type="text" id="preferredDate" placeholder="For example: next week, weekdays, or after 20 August" />
               </div>
 
               <div class="form-field">
@@ -113,16 +130,16 @@
                   <option>Paint Correction</option>
                   <option>Ceramic Coating</option>
                   <option>Interior Detailing</option>
-                  <option>Not sure / Need advice</option>
+                  <option>Not sure — please advise</option>
                 </select>
               </div>
 
               <!-- PHOTO UPLOAD -->
               <div class="form-field">
-                <label>Vehicle Photos <span style="color:var(--gold);font-size:10px;letter-spacing:0.08em">(UP TO 10 — RECOMMENDED)</span></label>
+                <label>Vehicle Photos <span style="color:var(--gold);font-size:10px;letter-spacing:0.08em">(UP TO 10 — STRONGLY RECOMMENDED)</span></label>
                 <div class="photo-upload-zone" id="photoUploadZone">
                   <input type="file" id="photoInput" accept="image/*" multiple>
-                  <div class="photo-upload-icon">📸</div>
+                  <div class="photo-upload-icon" aria-hidden="true">+</div>
                   <div class="photo-upload-title">Tap to add car photos</div>
                   <div class="photo-upload-sub">JPG · PNG · HEIC · up to 10 photos<br>Include paint, interior, scratches, or areas of concern</div>
                 </div>
@@ -144,7 +161,7 @@
               </div>
 
               <div class="contact-form-actions">
-                <button class="btn primary" type="submit" id="submitBtn">Send Enquiry</button>
+                <button class="btn primary" type="submit" id="submitBtn">Send Photo Quote Request</button>
               </div>
               <p class="form-status" id="formStatus" aria-live="polite"></p>
             </form>
@@ -162,12 +179,12 @@
   <div class="success-modal-card" role="dialog" aria-modal="true">
     <p class="contact-kicker">Thank You</p>
     <h2 class="success-modal-title">WE'VE GOT YOUR ENQUIRY</h2>
-    <p class="success-modal-text">We've received your details and photos. We'll review them and get back to you shortly with pricing.</p>
+    <p class="success-modal-text">We've received your request. We will review the vehicle and reply by text or email with pricing and available dates.</p>
     <div class="form-photo-note">
-      <h3>Want a faster reply?</h3>
-      <p>You can also text us additional photos directly.</p>
+      <h3>Your booking is not confirmed yet</h3>
+      <p>Please wait until we send you a confirmed date and time before bringing the vehicle to Wangara Motors.</p>
       <div class="contact-form-actions">
-        <a class="btn primary" href="sms:0416795345">Text Photos</a>
+        <a class="btn primary" href="sms:0416795345">Text More Photos</a>
         <a class="btn ghost" href="index.html">Back to Home</a>
       </div>
     </div>
@@ -177,13 +194,15 @@
   </div>
 </div>
 
+<div class="floating-cta"><a class="floating-btn message" href="sms:0416795345">Text Photos</a><a class="floating-btn quote" href="#book">Online Quote</a></div>
 <footer class="footer">
   <div class="container footer-inner">
     <div>© 2026 SUN PRO Car Detailing</div>
     <div class="footer-links">
-      <a href="services.html">Services</a>
-      <a href="gallery.html">Gallery</a>
-      <a href="contact.html">Contact</a>
+      <a href="gallery.html">Our Work</a>
+      <a href="sms:0416795345">Text</a>
+      <a href="mailto:hello@sunprodetail.com">Email</a>
+      <a href="contact.html#book">Photo Quote</a>
     </div>
   </div>
 </footer>
@@ -271,6 +290,7 @@ document.getElementById('contactForm').addEventListener('submit', async e => {
   const phone   = document.getElementById('phone').value.trim();
   const email   = document.getElementById('email').value.trim();
   const vehicle = document.getElementById('vehicle').value.trim();
+  const preferredDate = document.getElementById('preferredDate').value.trim();
   const service = document.getElementById('service').value;
   const message = document.getElementById('message').value.trim();
   const status  = document.getElementById('formStatus');
@@ -279,8 +299,14 @@ document.getElementById('contactForm').addEventListener('submit', async e => {
   const bar     = document.getElementById('uploadBar');
   const upStatus= document.getElementById('uploadStatus');
 
-  if (!name || !phone || !email) {
-    status.textContent = 'Please fill in name, phone, and email.';
+  if (!name || (!phone && !email) || !vehicle || !service || !message) {
+    status.textContent = 'Please add your name, vehicle, service, message, and either a mobile number or email.';
+    status.classList.add('is-error');
+    return;
+  }
+
+  if (email && !/^\S+@\S+\.\S+$/.test(email)) {
+    status.textContent = 'Please check your email address or leave it blank and use your mobile number.';
     status.classList.add('is-error');
     return;
   }
@@ -315,7 +341,7 @@ document.getElementById('contactForm').addEventListener('submit', async e => {
 
     // 2. Firestore에 견적 저장
     await addDoc(collection(db, 'enquiries'), {
-      name, phone, email, vehicle, service, message,
+      name, phone, email, vehicle, preferredDate, service, message,
       photos:      photoURLs,
       photoCount:  photoURLs.length,
       status:      'new',
@@ -332,6 +358,7 @@ document.getElementById('contactForm').addEventListener('submit', async e => {
       alertData.append('phone',   phone);
       alertData.append('email',   email);
       alertData.append('vehicle', vehicle || 'Not provided');
+      alertData.append('preferredDate', preferredDate || 'No preference');
       alertData.append('service', service || 'Not specified');
       alertData.append('message', message || 'No message');
       alertData.append('photos',  photoURLs.length + ' photo(s) — view at sunprodetail.com/admin.html');
@@ -352,12 +379,12 @@ document.getElementById('contactForm').addEventListener('submit', async e => {
 
   } catch (err) {
     console.error(err);
-    status.textContent = 'Something went wrong. Please try again or text us directly.';
+    status.textContent = 'Something went wrong. Please try again or text your photos to 0416 795 345.';
     status.classList.add('is-error');
     progress.style.display = 'none';
   } finally {
     btn.disabled    = false;
-    btn.textContent = 'Send Enquiry';
+    btn.textContent = 'Send Photo Quote Request';
   }
 });
 </script>
