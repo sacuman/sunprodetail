@@ -655,6 +655,48 @@ button, a { -webkit-tap-highlight-color: transparent; }
   border-color: rgba(212,168,67,0.6);
   background: rgba(212,168,67,0.06);
 }
+
+/* Clear pricing, accessible forms and mobile quote flow. */
+html { scroll-padding-top: 112px; }
+[id] { scroll-margin-top: 112px; }
+.skip-link { position: fixed; top: -100px; left: 16px; z-index: 3000; background: var(--gold); color: #050505; padding: 12px 20px; border-radius: 8px; }
+.skip-link:focus { top: 12px; }
+.footer-address { display: block; margin-top: 5px; font-size: 12px; color: var(--muted); }
+.hero-title { font-size: clamp(46px, 5.4vw, 78px); }
+.hero-prices { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; margin: 22px 0 8px; }
+.hero-prices a { display: flex; flex-direction: column; gap: 5px; padding: 12px 10px; background: rgba(212,168,67,.055); border: 1px solid rgba(212,168,67,.22); border-radius: 10px; font-size: 11px; }
+.hero-prices strong { color: var(--gold-lt); font-size: 17px; }
+.hero-price-note { color: var(--muted); font-size: 11px; line-height: 1.5; margin-bottom: 20px; }
+.hero-result-dot { width: 32px; height: 32px; position: relative; background: transparent; border: 0; border-radius: 50%; }
+.hero-result-dot::after { content: ''; position: absolute; width: 8px; height: 8px; top: 12px; left: 12px; border-radius: 50%; background: var(--muted2); }
+.hero-result-dot.is-active { width: 32px; border-radius: 50%; background: transparent; }
+.hero-result-dot.is-active::after { background: var(--gold-lt); }
+.form-field input, .form-field select, .form-field textarea { font-size: 16px; }
+.form-field label span { color: rgba(240,238,234,.65); font-size: 11px; }
+.form-help { color: var(--muted); font-size: 12px; line-height: 1.65; margin-bottom: 12px; }
+.field-error { color: #ffaaa4; font-size: 13px; line-height: 1.5; }
+.field-error:empty { display: none; }
+[aria-invalid="true"] { border-color: #ffaaa4 !important; }
+.photo-preview-remove { width: 32px; height: 32px; font-size: 22px; }
+.photo-upload-zone:focus-within { outline: 2px solid var(--gold-lt); outline-offset: 4px; }
+button:disabled { cursor: wait; opacity: .65; }
+.success-modal-card { max-height: calc(100dvh - 48px); overflow-y: auto; }
+@media (max-width: 980px) {
+  .contact-form-panel { order: -1; }
+  .contact-hero-card { display: none; }
+}
+@media (max-width: 768px) {
+  body { padding-bottom: calc(90px + env(safe-area-inset-bottom, 0px)); }
+  .floating-cta { bottom: calc(8px + env(safe-area-inset-bottom, 0px)); }
+  .hero-title { font-size: clamp(39px, 10vw, 62px); }
+  .hero-prices { gap: 6px; }
+  .hero-prices a { padding: 10px 7px; font-size: 10px; }
+  .hero-prices strong { font-size: 16px; }
+  .hero-cta .btn.insta-real { display: none; }
+  .contact-first-section { padding-top: 20px; }
+  .contact-form-card { padding: 20px 16px; }
+  .footer-links { flex-wrap: wrap; gap: 12px 18px; }
+}
 .quote-cta-symbol { width: 48px; height: 48px; display: grid; place-items: center; margin: 0 auto 14px; border: 1px solid rgba(212,168,67,.35); border-radius: 50%; color: var(--gold-lt); font-size: 28px; font-weight: 300; }
 @media (max-width: 768px) {
   .quote-cta-box {

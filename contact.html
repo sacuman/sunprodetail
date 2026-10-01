@@ -1,13 +1,24 @@
 <!doctype html>
-<html lang="en">
+<html lang="en-AU">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Contact & Quote | SUN PRO Car Detailing</title>
-  <meta name="description" content="Request a SUN PRO car detailing quote by text, email or online photo form. Advance bookings only in Wangara; same-day service is not available." />
+  <title>Get a Car Detailing Quote in Wangara | SUN PRO</title>
+  <meta name="description" content="Ask SUN PRO for a car detailing quote. Start with your name and mobile or email; photos are optional. Inside Wangara Motors, by advance appointment." />
   <link rel="stylesheet" href="css/style.css" />
+
+  <link rel="canonical" href="https://sunprodetail.com/contact.html" />
+  <meta property="og:title" content="Get a Car Detailing Quote in Wangara | SUN PRO" />
+  <meta property="og:description" content="Ask SUN PRO for a car detailing quote. Start with your name and mobile or email; photos are optional. Inside Wangara Motors, by advance appointment." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://sunprodetail.com/contact.html" />
+  <meta property="og:image" content="https://sunprodetail.com/images/real/hero-results.jpg" />
+  <meta property="og:locale" content="en_AU" />
+  <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "AutoWash", "@id": "https://sunprodetail.com/#business", "name": "SUN PRO Car Detailing", "url": "https://sunprodetail.com/", "image": "https://sunprodetail.com/images/real/hero-results.jpg", "telephone": "+61416795345", "email": "hello@sunprodetail.com", "address": {"@type": "PostalAddress", "streetAddress": "25 Prindiville Dr", "addressLocality": "Wangara", "addressRegion": "WA", "postalCode": "6065", "addressCountry": "AU"}, "areaServed": {"@type": "City", "name": "Perth"}, "description": "Car detailing, paint correction and ceramic coating inside Wangara Motors, by advance appointment.", "sameAs": ["https://instagram.com/sunprocardetailing"]}, {"@type": "WebSite", "@id": "https://sunprodetail.com/#website", "url": "https://sunprodetail.com/", "name": "SUN PRO Car Detailing", "publisher": {"@id": "https://sunprodetail.com/#business"}}, {"@type": "WebPage", "@id": "https://sunprodetail.com/contact.html#webpage", "url": "https://sunprodetail.com/contact.html", "name": "Get a Car Detailing Quote in Wangara | SUN PRO", "description": "Ask SUN PRO for a car detailing quote. Start with your name and mobile or email; photos are optional. Inside Wangara Motors, by advance appointment.", "inLanguage": "en-AU", "isPartOf": {"@id": "https://sunprodetail.com/#website"}, "about": {"@id": "https://sunprodetail.com/#business"}}]}</script>
+  <script defer src="js/site.js"></script>
 </head>
 <body>
+<a class="skip-link" href="#main-content">Skip to content</a>
 
 <header class="topbar">
   <div class="container topbar-inner">
@@ -29,14 +40,14 @@
     </nav>
   </div>
 </header>
-<aside class="appointment-strip" aria-label="Booking information"><div class="container appointment-strip-inner"><strong>Advance bookings only</strong><span>Same-day service is not available. Text, email or upload photos for a quote and available dates.</span><a href="#book">Start enquiry <span aria-hidden="true">↓</span></a></div></aside>
+<aside class="appointment-strip" aria-label="Booking information"><div class="container appointment-strip-inner"><strong>Advance bookings only</strong><span>Inside Wangara Motors · Text or enquire online for pricing and available dates.</span><a href="#book">Start enquiry <span aria-hidden="true">↓</span></a></div></aside>
 
-<main>
+<main id="main-content">
   <section class="page-head">
     <div class="container">
       <div class="kicker">Simple Photo Quote</div>
-      <h1 class="page-title">GET A<br><span class="gold">REAL QUOTE</span></h1>
-      <p class="page-sub">Send photos and your vehicle details. We review them personally and reply by text or email with pricing and available dates.</p>
+      <h1 class="page-title">CAR DETAILING<br><span class="gold">QUOTE</span></h1>
+      <p class="page-sub">Start with your name and a way to reach you. Add your vehicle details or photos if you have them, and we will help with the next step.</p>
     </div>
   </section>
 
@@ -45,9 +56,9 @@
 
       <div class="contact-hero-card">
         <p class="contact-kicker">How It Works</p>
-        <h2 class="contact-title">PHOTOS FIRST. NO GUESSWORK.</h2>
+        <h2 class="contact-title">A QUOTE FOR YOUR CAR</h2>
         <p class="contact-lead">
-          Upload photos of the vehicle, paint issues, scratches, stains or interior condition. We will recommend the suitable service, confirm the price and then offer an available booking date.
+          Tell us what you would like improved. Photos of the paint, interior or areas of concern help us assess the work and recommend a suitable service.
         </p>
         <div class="contact-booking-rule"><strong>Please note:</strong> We do not offer same-day or walk-in service. Sending an enquiry does not confirm a booking.</div>
       </div>
@@ -94,38 +105,38 @@
             <p class="contact-kicker">Request a Quote</p>
             <h2 class="contact-form-title">ONLINE PHOTO QUOTE</h2>
             <p class="contact-form-sub">Only your name and one reply method are needed. Photos help us give a much more accurate quote.</p>
-            <div class="form-booking-banner"><strong>Advance appointment required</strong><span>No same-day service. We will offer available dates after reviewing your enquiry.</span></div>
+            <p class="form-help">By advance appointment. We will confirm the price and available date before you book.</p>
 
             <form id="contactForm" class="contact-form" novalidate>
 
               <div class="contact-form-grid">
                 <div class="form-field">
-                  <label for="name">Name</label>
-                  <input type="text" id="name" placeholder="Your name" required />
+                  <label for="name">Name <span>(required)</span></label>
+                  <input type="text" id="name" name="name" autocomplete="name" maxlength="100" placeholder="Your name" required aria-describedby="nameError" /><p class="field-error" id="nameError"></p>
                 </div>
                 <div class="form-field">
                   <label for="phone">Mobile <span>(for a text reply)</span></label>
-                  <input type="tel" id="phone" inputmode="tel" placeholder="Optional if using email" />
+                  <input type="tel" id="phone" name="phone" autocomplete="tel" maxlength="30" aria-describedby="phoneError" inputmode="tel" placeholder="Optional if using email" /><p class="field-error" id="phoneError"></p>
                 </div>
                 <div class="form-field">
                   <label for="email">Email <span>(for an email reply)</span></label>
-                  <input type="email" id="email" inputmode="email" placeholder="Optional if using mobile" />
+                  <input type="email" id="email" name="email" autocomplete="email" maxlength="254" aria-describedby="emailError" inputmode="email" placeholder="Optional if using mobile" /><p class="field-error" id="emailError"></p>
                 </div>
                 <div class="form-field">
-                  <label for="vehicle">Vehicle</label>
-                  <input type="text" id="vehicle" placeholder="Make / Model / Year" required />
+                  <label for="vehicle">Vehicle <span>(optional)</span></label>
+                  <input type="text" id="vehicle" name="vehicle" maxlength="160" placeholder="Make / Model / Year" />
                 </div>
               </div>
 
               <div class="form-field">
                 <label for="preferredDate">Preferred Date or Timeframe <span>(optional)</span></label>
-                <input type="text" id="preferredDate" placeholder="For example: next week, weekdays, or after 20 August" />
+                <input type="text" id="preferredDate" name="preferredDate" maxlength="160" placeholder="For example: next week or weekdays" />
               </div>
 
               <div class="form-field">
-                <label for="service">Service Interested In</label>
-                <select id="service" required>
-                  <option value="">Select a service</option>
+                <label for="service">Service Interested In <span>(optional)</span></label>
+                <select id="service" name="service">
+                  <option value="">Not sure — help me choose</option>
                   <option>Refresh Detailing</option>
                   <option>Paint Correction</option>
                   <option>Ceramic Coating</option>
@@ -136,20 +147,20 @@
 
               <!-- PHOTO UPLOAD -->
               <div class="form-field">
-                <label>Vehicle Photos <span style="color:var(--gold);font-size:10px;letter-spacing:0.08em">(UP TO 10 — STRONGLY RECOMMENDED)</span></label>
+                <label for="photoInput">Vehicle Photos <span>(optional · up to 10)</span></label>
                 <div class="photo-upload-zone" id="photoUploadZone">
-                  <input type="file" id="photoInput" accept="image/*" multiple>
+                  <input type="file" id="photoInput" accept="image/jpeg,image/png,image/webp,image/heic,image/heif,.heic,.heif" multiple aria-describedby="photoHelp photoStatus">
                   <div class="photo-upload-icon" aria-hidden="true">+</div>
                   <div class="photo-upload-title">Tap to add car photos</div>
-                  <div class="photo-upload-sub">JPG · PNG · HEIC · up to 10 photos<br>Include paint, interior, scratches, or areas of concern</div>
+                  <div class="photo-upload-sub" id="photoHelp">JPG, PNG or WebP · up to 20 MB per original photo<br>HEIC works where supported by your browser. Photos are resized for upload.</div>
                 </div>
-                <div class="photo-preview-grid" id="photoPreviewGrid"></div>
+                <p id="photoStatus" class="field-error" role="status"></p><div class="photo-preview-grid" id="photoPreviewGrid"></div>
                 <div class="photo-count-label" id="photoCountLabel" style="display:none"></div>
               </div>
 
               <div class="form-field">
-                <label for="message">Message</label>
-                <textarea id="message" rows="5" placeholder="Tell us about your car — condition, what you want done, and the result you're after." required></textarea>
+                <label for="message">Message <span>(optional)</span></label>
+                <textarea id="message" name="message" maxlength="3000" rows="4" placeholder="Tell us about your car — condition, what you want done, and the result you're after."></textarea>
               </div>
 
               <!-- Progress bar -->
@@ -161,9 +172,9 @@
               </div>
 
               <div class="contact-form-actions">
-                <button class="btn primary" type="submit" id="submitBtn">Send Photo Quote Request</button>
+                <button class="btn primary" type="submit" id="submitBtn" disabled>Send Quote Request</button>
               </div>
-              <p class="form-status" id="formStatus" aria-live="polite"></p>
+              <p class="form-status" id="formStatus" role="status" aria-live="polite">Preparing the form…</p><p class="form-help">We use your details and photos to assess your enquiry and reply to you.</p><noscript><p>Please enable JavaScript or <a href="sms:0416795345">text 0416 795 345</a> for a quote.</p></noscript>
             </form>
           </div>
         </div>
@@ -176,10 +187,10 @@
 <!-- SUCCESS MODAL -->
 <div class="success-modal" id="successModal" hidden>
   <div class="success-modal-backdrop" id="successBackdrop"></div>
-  <div class="success-modal-card" role="dialog" aria-modal="true">
+  <div class="success-modal-card" role="dialog" aria-modal="true" aria-labelledby="successTitle" tabindex="-1">
     <p class="contact-kicker">Thank You</p>
-    <h2 class="success-modal-title">WE'VE GOT YOUR ENQUIRY</h2>
-    <p class="success-modal-text">We've received your request. We will review the vehicle and reply by text or email with pricing and available dates.</p>
+    <h2 class="success-modal-title" id="successTitle">YOUR ENQUIRY IS SAVED</h2>
+    <p class="success-modal-text" id="successText">We've received your request. We will review the vehicle and reply by text or email with pricing and available dates.</p>
     <div class="form-photo-note">
       <h3>Your booking is not confirmed yet</h3>
       <p>Please wait until we send you a confirmed date and time before bringing the vehicle to Wangara Motors.</p>
@@ -197,7 +208,7 @@
 <div class="floating-cta"><a class="floating-btn message" href="sms:0416795345">Text Photos</a><a class="floating-btn quote" href="#book">Online Quote</a></div>
 <footer class="footer">
   <div class="container footer-inner">
-    <div>© 2026 SUN PRO Car Detailing</div>
+    <div>© 2026 SUN PRO Car Detailing<span class="footer-address">Inside Wangara Motors · 25 Prindiville Dr, Wangara WA 6065</span></div>
     <div class="footer-links">
       <a href="gallery.html">Our Work</a>
       <a href="sms:0416795345">Text</a>
@@ -218,175 +229,7 @@ if (menuToggle && nav) {
 }
 </script>
 
-<script type="module">
-const FIREBASE_CONFIG = {
-  apiKey:            "AIzaSyC8gEAuf2im-PZIpaJkj736J6QBizh9QVU",
-  authDomain:        "sunpro-detailing.firebaseapp.com",
-  projectId:         "sunpro-detailing",
-  storageBucket:     "sunpro-detailing.firebasestorage.app",
-  messagingSenderId: "845648894976",
-  appId:             "1:845648894976:web:498c738df9219f0aa84ce5"
-};
-
-import { initializeApp }       from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js';
-import { getStorage, ref, uploadBytesResumable, getDownloadURL }
-  from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-storage.js';
-import { getFirestore, collection, addDoc }
-  from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
-
-const app     = initializeApp(FIREBASE_CONFIG);
-const storage = getStorage(app);
-const db      = getFirestore(app);
-
-// ── PHOTO PREVIEW ──
-let selectedFiles = [];
-const photoInput    = document.getElementById('photoInput');
-const previewGrid   = document.getElementById('photoPreviewGrid');
-const countLabel    = document.getElementById('photoCountLabel');
-
-function renderPreviews() {
-  previewGrid.innerHTML = '';
-  selectedFiles.forEach((file, i) => {
-    const reader = new FileReader();
-    reader.onload = e => {
-      const item = document.createElement('div');
-      item.className = 'photo-preview-item';
-      item.innerHTML = `<img src="${e.target.result}" alt=""><button class="photo-preview-remove" data-i="${i}">×</button>`;
-      previewGrid.appendChild(item);
-      item.querySelector('.photo-preview-remove').addEventListener('click', () => {
-        selectedFiles.splice(i, 1);
-        renderPreviews();
-      });
-    };
-    reader.readAsDataURL(file);
-  });
-  if (selectedFiles.length > 0) {
-    countLabel.style.display = 'block';
-    countLabel.textContent   = `${selectedFiles.length} photo${selectedFiles.length > 1 ? 's' : ''} selected`;
-    document.querySelector('.photo-upload-title').textContent = 'Tap to add more photos';
-  } else {
-    countLabel.style.display = 'none';
-    document.querySelector('.photo-upload-title').textContent = 'Tap to add car photos';
-  }
-}
-
-photoInput.addEventListener('change', () => {
-  const newFiles = Array.from(photoInput.files);
-  selectedFiles  = [...selectedFiles, ...newFiles].slice(0, 10);
-  renderPreviews();
-  photoInput.value = '';
-});
-
-// ── MODAL ──
-const modal = document.getElementById('successModal');
-document.getElementById('closeModal').onclick       = () => { modal.hidden = true; document.body.style.overflow = ''; };
-document.getElementById('successBackdrop').onclick  = () => { modal.hidden = true; document.body.style.overflow = ''; };
-
-// ── FORM SUBMIT ──
-document.getElementById('contactForm').addEventListener('submit', async e => {
-  e.preventDefault();
-
-  const name    = document.getElementById('name').value.trim();
-  const phone   = document.getElementById('phone').value.trim();
-  const email   = document.getElementById('email').value.trim();
-  const vehicle = document.getElementById('vehicle').value.trim();
-  const preferredDate = document.getElementById('preferredDate').value.trim();
-  const service = document.getElementById('service').value;
-  const message = document.getElementById('message').value.trim();
-  const status  = document.getElementById('formStatus');
-  const btn     = document.getElementById('submitBtn');
-  const progress= document.getElementById('uploadProgress');
-  const bar     = document.getElementById('uploadBar');
-  const upStatus= document.getElementById('uploadStatus');
-
-  if (!name || (!phone && !email) || !vehicle || !service || !message) {
-    status.textContent = 'Please add your name, vehicle, service, message, and either a mobile number or email.';
-    status.classList.add('is-error');
-    return;
-  }
-
-  if (email && !/^\S+@\S+\.\S+$/.test(email)) {
-    status.textContent = 'Please check your email address or leave it blank and use your mobile number.';
-    status.classList.add('is-error');
-    return;
-  }
-
-  btn.disabled       = true;
-  btn.textContent    = 'Sending…';
-  status.textContent = '';
-  status.classList.remove('is-error');
-
-  try {
-    // 1. 사진 업로드
-    const photoURLs = [];
-    if (selectedFiles.length > 0) {
-      progress.style.display = 'block';
-      for (let i = 0; i < selectedFiles.length; i++) {
-        const file    = selectedFiles[i];
-        const id      = `${Date.now()}_${Math.random().toString(36).slice(2,7)}`;
-        const fileRef = ref(storage, `enquiries/${id}_${file.name}`);
-        upStatus.textContent = `Uploading photo ${i + 1} of ${selectedFiles.length}…`;
-        bar.style.width      = `${Math.round((i / selectedFiles.length) * 80)}%`;
-
-        await new Promise((res, rej) => {
-          const task = uploadBytesResumable(fileRef, file);
-          task.on('state_changed', null, rej, res);
-        });
-        const url = await getDownloadURL(fileRef);
-        photoURLs.push(url);
-      }
-      bar.style.width      = '90%';
-      upStatus.textContent = 'Saving enquiry…';
-    }
-
-    // 2. Firestore에 견적 저장
-    await addDoc(collection(db, 'enquiries'), {
-      name, phone, email, vehicle, preferredDate, service, message,
-      photos:      photoURLs,
-      photoCount:  photoURLs.length,
-      status:      'new',
-      submittedAt: Date.now()
-    });
-
-    bar.style.width      = '100%';
-    upStatus.textContent = 'Done!';
-
-    // 3. Formspree 알림 이메일 (텍스트만 — 사진은 어드민에서 확인)
-    try {
-      const alertData = new FormData();
-      alertData.append('name',    name);
-      alertData.append('phone',   phone);
-      alertData.append('email',   email);
-      alertData.append('vehicle', vehicle || 'Not provided');
-      alertData.append('preferredDate', preferredDate || 'No preference');
-      alertData.append('service', service || 'Not specified');
-      alertData.append('message', message || 'No message');
-      alertData.append('photos',  photoURLs.length + ' photo(s) — view at sunprodetail.com/admin.html');
-      await fetch('https://formspree.io/f/mgonoojp', {
-        method: 'POST',
-        body: alertData,
-        headers: { Accept: 'application/json' }
-      });
-    } catch {}
-
-    // 성공
-    setTimeout(() => { progress.style.display = 'none'; }, 800);
-    modal.hidden               = false;
-    document.body.style.overflow = 'hidden';
-    document.getElementById('contactForm').reset();
-    selectedFiles = [];
-    renderPreviews();
-
-  } catch (err) {
-    console.error(err);
-    status.textContent = 'Something went wrong. Please try again or text your photos to 0416 795 345.';
-    status.classList.add('is-error');
-    progress.style.display = 'none';
-  } finally {
-    btn.disabled    = false;
-    btn.textContent = 'Send Photo Quote Request';
-  }
-});
-</script>
+<script type="module" src="js/contact.js"></script>
+<script>setTimeout(function(){const f=document.getElementById('contactForm');if(!f.dataset.ready){document.getElementById('formStatus').textContent='The form could not load. Please text 0416 795 345 or email hello@sunprodetail.com.';}},8000);</script>
 </body>
 </html>

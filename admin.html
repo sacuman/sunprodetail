@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SUN PRO — Admin</title>
+<meta name="robots" content="noindex, nofollow">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -187,20 +188,21 @@ body { font-family:'Plus Jakarta Sans',sans-serif; background:var(--bg); color:v
 
   <div class="admin-body">
     <div class="tab-bar">
-      <button class="tab-btn" data-tab="enquiries">📋 Enquiries <span class="badge" id="newBadge" style="display:none">0</span></button>
-      <button class="tab-btn active" data-tab="upload">📤 Upload</button>
+      <button class="tab-btn active" data-tab="enquiries">📋 Enquiries <span class="badge" id="newBadge" style="display:none">0</span></button>
+      <button class="tab-btn" data-tab="upload">📤 Upload</button>
       <button class="tab-btn" data-tab="manage">🖼️ Gallery</button>
     </div>
 
     <!-- ENQUIRIES TAB -->
-    <div class="tab-panel" id="tab-enquiries">
+    <div class="tab-panel active" id="tab-enquiries">
       <div class="section-title">ENQUIRIES</div>
-      <p class="section-sub">Customer quote requests with photos. Tap a card to expand.</p>
-      <div id="enquiryList"><div class="empty-state"><span class="loading-spin"></span> Loading…</div></div>
+      <p class="section-sub">Saved customer enquiries. Check this inbox regularly: email alerts can fail or be filtered. Tap a card to expand.</p>
+      <p class="section-sub" id="enquirySummary" aria-live="polite"></p><button class="btn-outline" id="refreshEnquiries" type="button" style="margin-bottom:20px">Refresh enquiries</button>
+       <div id="enquiryList"><div class="empty-state"><span class="loading-spin"></span> Loading…</div></div>
     </div>
 
     <!-- UPLOAD TAB -->
-    <div class="tab-panel active" id="tab-upload">
+    <div class="tab-panel" id="tab-upload">
       <div class="section-title">UPLOAD PHOTOS</div>
       <p class="section-sub">Select category, then drag & drop or tap to choose photos.</p>
       <div class="cat-select-wrap">
@@ -238,6 +240,7 @@ body { font-family:'Plus Jakarta Sans',sans-serif; background:var(--bg); color:v
 <div id="toast"></div>
 
 <script type="module">
+import { escapeHTML, safePhotoURL, contactNumber } from "./js/quote-utils.js";
 const FIREBASE_CONFIG = {
   apiKey:            "AIzaSyC8gEAuf2im-PZIpaJkj736J6QBizh9QVU",
   authDomain:        "sunpro-detailing.firebaseapp.com",
@@ -323,91 +326,88 @@ function openPhotoLb(url) { photoLbImg.src = url; photoLb.classList.add('open');
 window.openPhotoLb = openPhotoLb;
 
 // ── ENQUIRIES ──
+let loadingEnquiries = false;
+document.getElementById('refreshEnquiries').addEventListener('click', loadEnquiries);
 async function loadEnquiries() {
+  if (loadingEnquiries) return;
+  loadingEnquiries = true;
   const list = document.getElementById('enquiryList');
-  list.innerHTML = '<div class="empty-state"><span class="loading-spin"></span> Loading…</div>';
-  const snap = await getDocs(query(collection(db,'enquiries'), orderBy('submittedAt','desc')));
-  const docs = snap.docs.map(d => ({id:d.id,...d.data()}));
-  const newCount = docs.filter(d => d.status === 'new').length;
-  const badge = document.getElementById('newBadge');
-  if (newCount > 0) { badge.style.display='inline-flex'; badge.textContent=newCount; }
-  else { badge.style.display='none'; }
-  if (docs.length === 0) {
-    list.innerHTML = '<div class="empty-state"><span>📋</span>No enquiries yet.</div>';
-    return;
-  }
-  list.innerHTML = '';
-  docs.forEach(enq => {
-    const date = new Date(enq.submittedAt).toLocaleString('en-AU', {day:'numeric',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit'});
-    const card = document.createElement('div');
-    card.className = `enquiry-card ${enq.status==='new'?'is-new':''}`;
-    card.innerHTML = `
-      <div class="enquiry-card-header">
-        <div class="enquiry-info">
-          <div class="enquiry-name">${enq.name}</div>
-          <div class="enquiry-meta">
-            <span>📞 ${enq.phone}</span>
-            <span>✉️ ${enq.email}</span>
-            ${enq.vehicle ? `<span>🚗 ${enq.vehicle}</span>` : ''}
-            ${enq.service ? `<span>🔧 ${enq.service}</span>` : ''}
-            ${enq.photoCount > 0 ? `<span>📸 ${enq.photoCount} photo${enq.photoCount>1?'s':''}</span>` : ''}
-          </div>
-        </div>
-        <span class="enquiry-badge ${enq.status||'new'}">${enq.status==='done'?'Done':enq.status==='seen'?'Seen':'New'}</span>
-        <span class="enquiry-toggle">▾</span>
-      </div>
-      <div class="enquiry-body">
-        ${enq.message ? `<div class="enquiry-section"><div class="enquiry-section-title">Message</div><div class="enquiry-message">${enq.message}</div></div>` : ''}
-        ${enq.photos && enq.photos.length > 0 ? `
-          <div class="enquiry-section">
-            <div class="enquiry-section-title">Photos (${enq.photos.length})</div>
-            <div class="enquiry-photos">
-              ${enq.photos.map(url => `<div class="enquiry-photo" onclick="openPhotoLb('${url}')"><img src="${url}" loading="lazy"></div>`).join('')}
-            </div>
-          </div>` : ''}
-        <div class="enquiry-actions">
-          <button class="btn-sm btn-call" onclick="window.location='tel:${enq.phone}'">📞 Call</button>
-          <button class="btn-sm btn-sms" onclick="window.location='sms:${enq.phone}'">💬 Text</button>
-          <button class="btn-sm btn-done" data-id="${enq.id}" data-action="done">✓ Mark Done</button>
-          <button class="btn-sm btn-delete" data-id="${enq.id}" data-action="delete">🗑 Delete</button>
-        </div>
-        <div class="enquiry-date">Received: ${date}</div>
-      </div>
-    `;
-    card.querySelector('.enquiry-card-header').addEventListener('click', async () => {
-      card.classList.toggle('open');
-      if (card.classList.contains('open') && enq.status === 'new') {
-        await updateDoc(doc(db,'enquiries',enq.id), {status:'seen'}).catch(()=>{});
-        enq.status = 'seen';
-        card.classList.remove('is-new');
-        card.querySelector('.enquiry-badge').className = 'enquiry-badge seen';
-        card.querySelector('.enquiry-badge').textContent = 'Seen';
-        const newBadgeCount = parseInt(badge.textContent||0) - 1;
-        if (newBadgeCount <= 0) badge.style.display='none';
-        else badge.textContent = newBadgeCount;
-      }
-    });
-    card.querySelectorAll('[data-action]').forEach(btn => {
-      btn.addEventListener('click', async e => {
-        e.stopPropagation();
-        const id = btn.dataset.id;
-        const action = btn.dataset.action;
-        if (action === 'done') {
-          await updateDoc(doc(db,'enquiries',id), {status:'done'}).catch(()=>{});
-          card.querySelector('.enquiry-badge').className = 'enquiry-badge done';
-          card.querySelector('.enquiry-badge').textContent = 'Done';
-          showToast('Marked as done ✓','success');
-        }
-        if (action === 'delete') {
-          if (!confirm('Delete this enquiry?')) return;
-          await deleteDoc(doc(db,'enquiries',id)).catch(()=>{});
-          card.remove();
-          showToast('Enquiry deleted','info');
-        }
+  const refresh = document.getElementById('refreshEnquiries');
+  refresh.disabled = true;
+  list.innerHTML = '<div class="empty-state">Loading enquiries…</div>';
+  try {
+    const snap = await getDocs(query(collection(db, 'enquiries'), orderBy('submittedAt', 'desc')));
+    const docs = snap.docs.map(d => ({ ...d.data(), id: d.id }));
+    const badge = document.getElementById('newBadge');
+    function updateSummary() {
+      const newCount = docs.filter(d => d.status === 'new').length;
+      badge.textContent = newCount; badge.style.display = newCount ? 'inline-flex' : 'none';
+      const since = Date.now() - 90 * 86400000;
+      const recent = docs.filter(d => Number(d.submittedAt) >= since).length;
+      document.getElementById('enquirySummary').textContent = `${newCount} new enquiries · ${recent} saved in the last 90 days. These are enquiries, not confirmed bookings.`;
+    }
+    updateSummary();
+    list.replaceChildren();
+    if (!docs.length) { list.innerHTML = '<div class="empty-state">No saved enquiries yet.</div>'; return; }
+    docs.forEach(enq => {
+      const state = ['new', 'seen', 'done'].includes(enq.status) ? enq.status : 'new';
+      const date = new Date(Number(enq.submittedAt)).toLocaleString('en-AU', { timeZone: 'Australia/Perth', day: 'numeric', month: 'short', year: 'numeric', hour: '2-digit', minute: '2-digit' });
+      const card = document.createElement('div'); card.className = `enquiry-card ${state === 'new' ? 'is-new' : ''}`;
+      card.innerHTML = `<div class="enquiry-card-header" role="button" tabindex="0" aria-expanded="false">
+        <div class="enquiry-info"><div class="enquiry-name">${escapeHTML(enq.name)}</div>
+        <div class="enquiry-meta"><span>${escapeHTML(enq.phone)}</span><span>${escapeHTML(enq.email)}</span>
+        <span>${escapeHTML(enq.vehicle || 'Vehicle not provided')}</span><span>${escapeHTML(enq.service || 'Help choosing a service')}</span></div></div>
+        <span class="enquiry-badge ${state}">${state === 'done' ? 'Done' : state === 'seen' ? 'Seen' : 'New'}</span><span class="enquiry-toggle">▾</span></div>
+        <div class="enquiry-body"><div class="enquiry-section"><div class="enquiry-section-title">Preferred date / timeframe</div><div>${escapeHTML(enq.preferredDate || 'Not specified')}</div></div>
+        <div class="enquiry-section"><div class="enquiry-section-title">Message</div><div class="enquiry-message">${escapeHTML(enq.message || 'No message provided')}</div></div>
+        <div class="enquiry-photos"></div><div class="enquiry-actions"></div>
+        <div class="enquiry-date">Received: ${escapeHTML(date)} (Perth) · Reference: ${escapeHTML(enq.id)}</div></div>`;
+      const photos = Array.isArray(enq.photos) ? enq.photos : [];
+      photos.map(safePhotoURL).filter(Boolean).forEach(url => {
+        const button = document.createElement('button'); button.type = 'button'; button.className = 'enquiry-photo'; button.setAttribute('aria-label', 'Open customer vehicle photo');
+        const img = document.createElement('img'); img.src = url; img.alt = 'Customer vehicle photo'; img.loading = 'lazy'; button.append(img);
+        button.addEventListener('click', () => openPhotoLb(url)); card.querySelector('.enquiry-photos').append(button);
       });
+      const actions = card.querySelector('.enquiry-actions');
+      const phone = contactNumber(enq.phone);
+      if (phone) for (const [prefix, title, cls] of [['tel:', 'Call', 'btn-call'], ['sms:', 'Text', 'btn-sms']]) {
+        const link = document.createElement('a'); link.className = `btn-sm ${cls}`; link.textContent = title; link.href = prefix + phone; actions.append(link);
+      }
+      const email = String(enq.email || '');
+      if (/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        const link = document.createElement('a'); link.className = 'btn-sm btn-sms'; link.textContent = 'Email'; link.href = 'mailto:' + encodeURIComponent(email); actions.append(link);
+      }
+      for (const [action, label, cls] of [['done', 'Mark Done', 'btn-done'], ['delete', 'Delete', 'btn-delete']]) {
+        const button = document.createElement('button'); button.type = 'button'; button.className = `btn-sm ${cls}`; button.textContent = label; actions.append(button);
+        button.addEventListener('click', async () => {
+          if (action === 'delete' && !confirm('Permanently delete this enquiry?')) return;
+          button.disabled = true;
+          try {
+            if (action === 'delete') { await deleteDoc(doc(db, 'enquiries', enq.id)); card.remove(); docs.splice(docs.indexOf(enq), 1); updateSummary(); showToast('Enquiry deleted', 'info'); }
+            else { await updateDoc(doc(db, 'enquiries', enq.id), { status: 'done' }); enq.status = 'done'; updateSummary(); card.classList.remove('is-new'); card.querySelector('.enquiry-badge').className = 'enquiry-badge done'; card.querySelector('.enquiry-badge').textContent = 'Done'; showToast('Marked as done', 'success'); }
+          } catch { showToast('Could not save the change. Please try again.', 'error'); }
+          finally { button.disabled = false; }
+        });
+      }
+      const header = card.querySelector('.enquiry-card-header');
+      const toggle = async () => {
+        card.classList.toggle('open'); header.setAttribute('aria-expanded', String(card.classList.contains('open')));
+        if (card.classList.contains('open') && enq.status === 'new') {
+          try {
+            await updateDoc(doc(db, 'enquiries', enq.id), { status: 'seen' }); enq.status = 'seen'; card.classList.remove('is-new');
+            card.querySelector('.enquiry-badge').className = 'enquiry-badge seen'; card.querySelector('.enquiry-badge').textContent = 'Seen';
+            updateSummary();
+          } catch { showToast('Opened enquiry; read status could not be saved.', 'error'); }
+        }
+      };
+      header.addEventListener('click', toggle);
+      header.addEventListener('keydown', event => { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); toggle(); } });
+      list.append(card);
     });
-    list.appendChild(card);
-  });
+  } catch {
+    list.innerHTML = '<div class="empty-state">Enquiries could not be loaded. Please refresh or sign in again.</div>';
+    document.getElementById('enquirySummary').textContent = 'Enquiry count is unavailable.';
+  } finally { loadingEnquiries = false; refresh.disabled = false; }
 }
 
 // ── UPLOAD ──
@@ -423,7 +423,7 @@ function renderQueue() {
   queue.forEach((item,i) => {
     const div = document.createElement('div');
     div.className = 'queue-item';
-    div.innerHTML = `<img class="queue-thumb" src="${item.preview}"><div class="queue-name">${item.file.name}</div><div class="queue-status pending" id="qs-${i}">Pending</div><button class="queue-remove" data-i="${i}">×</button>`;
+    div.innerHTML = `<img class="queue-thumb" src="${escapeHTML(item.preview)}"><div class="queue-name">${escapeHTML(item.file.name)}</div><div class="queue-status pending" id="qs-${i}">Pending</div><button class="queue-remove" data-i="${i}">×</button>`;
     uploadQueue.appendChild(div);
     div.querySelector('.queue-remove').addEventListener('click', () => { queue.splice(i,1); renderQueue(); uploadBtn.disabled=queue.length===0; });
   });
@@ -460,7 +460,7 @@ uploadBtn.addEventListener('click', async () => {
     statusEl.textContent='Uploading…'; statusEl.className='queue-status uploading';
     try {
       const id      = `${Date.now()}_${Math.random().toString(36).slice(2,8)}`;
-      const path    = `gallery/${category}/${id}_${item.file.name}`;
+      const path    = `gallery/${category}/${id}_${escapeHTML(item.file.name)}`;
       const fileRef = sRef(storage, path);
       await new Promise((res,rej) => { const t=uploadBytesResumable(fileRef,item.file); t.on('state_changed',null,rej,res); });
       const url = await getDownloadURL(fileRef);
@@ -484,7 +484,7 @@ async function loadManage() {
   galleryData = {};
   for (const cat of CATS) {
     const snap = await getDocs(query(collection(db,'gallery',cat,'photos'), orderBy('order')));
-    galleryData[cat] = snap.docs.map(d => ({id:d.id,...d.data()}));
+    galleryData[cat] = snap.docs.map(d => ({...d.data(),id:d.id}));
   }
   renderManage();
 }
@@ -503,7 +503,7 @@ function renderManage() {
     photos.forEach((photo,idx) => {
       const item = document.createElement('div');
       item.className='grid-item'; item.dataset.id=photo.id; item.dataset.cat=cat; item.draggable=true;
-      item.innerHTML=`<img src="${photo.url}" loading="lazy"><div class="grid-item-overlay"><div class="grid-item-order">#${idx+1}</div><div class="grid-item-actions"><button class="grid-item-btn star" title="Set cover">⭐</button><button class="grid-item-btn del" title="Delete">🗑</button></div></div>`;
+      item.innerHTML=`<img src="${escapeHTML(safePhotoURL(photo.url))}" loading="lazy"><div class="grid-item-overlay"><div class="grid-item-order">#${idx+1}</div><div class="grid-item-actions"><button class="grid-item-btn star" title="Set cover">⭐</button><button class="grid-item-btn del" title="Delete">🗑</button></div></div>`;
       grid.appendChild(item);
       item.querySelector('.del').addEventListener('click', async () => {
         if (!confirm('Delete this photo?')) return;
