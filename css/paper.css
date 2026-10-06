@@ -35,3 +35,16 @@ body,button,input,select,textarea,.btn,.btn-solid,.btn-ghost{font-family:Arial,H
 
 /* Clip service photos once, without the legacy dark frame. */
 .service-work-frame{background:transparent;border:0;overflow:hidden;border-radius:14px}.service-work-frame img{border-radius:0}
+
+/* Align the shared header with page content and retain a full touch target. */
+.topbar-inner{padding-inline:34px}
+.menu-toggle{width:44px;height:44px}
+@media(max-width:700px){.topbar-inner{padding-inline:22px}}
+@media(max-width:350px){.topbar-inner{padding-inline:20px}}
+/* Home editorial headings use comfortable leading and balanced phrase widths. */
+.why-heading{font-size:clamp(32px,3.4vw,46px);line-height:1.15;letter-spacing:-.035em;max-width:24ch;text-wrap:balance}
+.why-card{min-width:0}.why-card h3{font-size:20px;line-height:1.25;letter-spacing:-.025em;text-wrap:balance;min-height:2.5em}
+.why-card p{max-width:38ch;text-wrap:pretty}.why-list li{line-height:1.6;text-wrap:pretty}
+.photo-quote-heading{font-size:clamp(32px,3.3vw,44px);line-height:1.15;letter-spacing:-.035em;max-width:20ch;text-wrap:balance;margin-bottom:18px}
+.quote-cta-box>div{min-width:0}.quote-cta-box p{max-width:50ch;text-wrap:pretty}
+@media(max-width:700px){.why-card h3{min-height:0}.quote-cta-box{padding:28px 22px}.photo-quote-heading{max-width:22ch}}
