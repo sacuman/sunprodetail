@@ -30,3 +30,5 @@ body,button,input,select,textarea,.btn,.btn-solid,.btn-ghost{font-family:Arial,H
 /* Shared spacing between action buttons, including wrapped and stacked rows. */
 .hero-cta,.quote-flow-actions,.price-cta,.end-cta-actions,.contact-form-actions,.contact-info-actions,.location-actions,.floating-cta,.gallery-filters{gap:16px}
 @media(max-width:1180px){.nav>.btn+.btn{margin-top:10px}}
+
+.hero-result img[hidden]{display:none}.hero-result-slider.is-loading .hero-result{aspect-ratio:1/1;display:flex;align-items:center;justify-content:center}.hero-result-loading{padding:24px;color:var(--muted);font-size:13px}.hero-result-loading[hidden]{display:none}

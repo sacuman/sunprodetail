@@ -12,7 +12,7 @@ test('paper redesign preserves SEO, booking fields, prices, backend and admin co
  for(const file of pages){
   const old=new JSDOM(before(file)),current=new JSDOM(read(file)),a=old.window.document,b=current.window.document;
   for(const selector of ['title','meta[name=description]','link[rel=canonical]','script[type="application/ld+json"]'])assert.equal(b.querySelector(selector).outerHTML,a.querySelector(selector).outerHTML,file+' '+selector);
-  for(const el of a.querySelectorAll('[id]'))assert.ok(b.getElementById(el.id),file+' lost '+el.id);
+  for(const el of a.querySelectorAll('[id]')){if(file==='index.html'&&el.id==='paperWorkTitle')continue;assert.ok(b.getElementById(el.id),file+' lost '+el.id);}
   const money=doc=>[...doc.querySelector('main').textContent.matchAll(/\$\d+/g)].map(x=>x[0]);assert.deepEqual(money(b),money(a),file+' changed prices');
   assert.ok(b.querySelector('link[href^="css/paper.css"]'));
   old.window.close();current.window.close();
@@ -20,7 +20,7 @@ test('paper redesign preserves SEO, booking fields, prices, backend and admin co
  const old=new JSDOM(before('contact.html')),current=new JSDOM(read('contact.html'));
  assert.equal(current.window.document.querySelector('#contactForm').outerHTML,old.window.document.querySelector('#contactForm').outerHTML);
  old.window.close();current.window.close();
- for(const file of ['admin.html','js/contact.js','js/quote-utils.js','js/firebase-config.js','js/site.js','js/hero.js'])assert.equal(read(file),before(file),file);
+ for(const file of ['admin.html','js/contact.js','js/quote-utils.js','js/firebase-config.js','js/site.js'])assert.equal(read(file),before(file),file);
 });
 test('gallery decorations fill only incomplete rows with stable choices and never count as photos',()=>{
  const dom=new JSDOM('<div class="work-grid"></div>');const grid=dom.window.document.querySelector('div');
@@ -85,9 +85,9 @@ test('every active artwork is unique across page positions and home/gallery pool
  assert.match(read('services.html'),/pencil-tool buffing[^>]*><img src="images\/pencil\/paint-buffing-action.png"/);
 });
 
-test("home tools persist independently of responsive photo grid decorations",()=>{
- const dom=new JSDOM(read("index.html"));const doc=dom.window.document,tools=doc.querySelector(".home-tools"),grid=doc.querySelector(".work-grid");
- assert.ok(tools);assert.equal(tools.closest(".work-grid"),null);
- for(const columns of [1,2,3]){fillWorkGrid(grid,{columns,seed:3,key:"home"});assert.equal(doc.querySelector(".home-tools"),tools);assert.equal(tools.querySelector("img").getAttribute("src"),"images/pencil/home-spray-tools.png");}
+test("home retains fixed tools but removes the duplicated photo section",()=>{
+ const dom=new JSDOM(read("index.html"));const doc=dom.window.document;
+ assert.ok(doc.querySelector(".home-tools"));assert.equal(doc.querySelector(".paper-work"),null);assert.equal(doc.querySelector(".work-grid"),null);
+ assert.equal(doc.querySelector('script[src^="js/pencil-gallery"]'),null);assert.equal(doc.getElementById("heroResultImg").hasAttribute("srcset"),false);
  dom.window.close();
 });

@@ -17,8 +17,7 @@
   <meta property="og:locale" content="en_AU" />
   <script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "AutoWash", "@id": "https://sunprodetail.com/#business", "name": "SUN PRO Car Detailing", "url": "https://sunprodetail.com/", "image": "https://sunprodetail.com/images/real/hero-results.jpg", "telephone": "+61416795345", "email": "hello@sunprodetail.com", "address": {"@type": "PostalAddress", "streetAddress": "25 Prindiville Dr", "addressLocality": "Wangara", "addressRegion": "WA", "postalCode": "6065", "addressCountry": "AU"}, "areaServed": {"@type": "City", "name": "Perth"}, "description": "Car detailing, paint correction and ceramic coating inside Wangara Motors, by advance appointment.", "sameAs": ["https://instagram.com/sunprocardetailing"]}, {"@type": "WebSite", "@id": "https://sunprodetail.com/#website", "url": "https://sunprodetail.com/", "name": "SUN PRO Car Detailing", "publisher": {"@id": "https://sunprodetail.com/#business"}}, {"@type": "WebPage", "@id": "https://sunprodetail.com/#webpage", "url": "https://sunprodetail.com/", "name": "Car Detailing Wangara | Paint Correction & Ceramic | SUN PRO", "description": "Wangara car detailing with fixed sedan prices: refresh $290, paint correction $250, ceramic $750. Red-soil, dog-hair and cement removal quoted separately.", "inLanguage": "en-AU", "isPartOf": {"@id": "https://sunprodetail.com/#website"}, "about": {"@id": "https://sunprodetail.com/#business"}}]}</script>
   <script defer src="js/site.js"></script>
-  <link rel="stylesheet" href="css/paper.css?v=all-button-spacing-20261006" />
-  <script type="module" src="js/pencil-gallery.js?v=unique-art-20261005"></script>
+  <link rel="stylesheet" href="css/paper.css?v=latest-upload-20261006" />
 </head>
 <body class="paper-site">
 <a class="skip-link" href="#main-content">Skip to content</a>
@@ -80,10 +79,11 @@
         <figure class="home-tools" aria-hidden="true"><img src="images/pencil/home-spray-tools.png" width="1536" height="1024" alt=""></figure>
       </div>
       <div class="hero-media">
-        <div class="hero-result-slider" id="heroResultSlider">
-          <div class="hero-result-badge"><span>100% OUR WORK</span><strong id="heroResultLabel">PAINT CORRECTION</strong></div>
+        <div class="hero-result-slider is-loading" id="heroResultSlider">
+          <div class="hero-result-badge"><span>100% OUR WORK</span><strong id="heroResultLabel">LATEST WORK</strong></div>
           <a class="hero-result" href="gallery.html" aria-label="View SunPro's real detailing results">
-            <img id="heroResultImg" src="images/real/hero-results-1200.webp" srcset="images/real/hero-results-640.webp 640w, images/real/hero-results-1200.webp 1200w" sizes="(max-width: 980px) 100vw, 50vw" width="1200" height="1200" alt="Actual SunPro detailing result" fetchpriority="high">
+            <span id="heroResultLoading" class="hero-result-loading" role="status">Loading latest work…</span>
+            <img id="heroResultImg" hidden sizes="(max-width: 980px) 100vw, 50vw" width="1200" height="1200" alt="Actual SunPro detailing result" fetchpriority="high">
             <div class="hero-result-link">View more real results <span aria-hidden="true">→</span></div>
           </a>
           <div class="hero-result-dots" id="heroResultDots" aria-label="Choose a result photo"></div>
@@ -93,7 +93,6 @@
     </div>
   </section>
 
-<section class="section paper-work" aria-labelledby="paperWorkTitle"><div class="container"><div class="paper-work-head"><div><div class="kicker">100% our work shown</div><h2 id="paperWorkTitle">Real cars.<br>Real results.</h2></div><p>Interior and exterior detailing, paint correction and ceramic coating. Every result shown on this site is from our own work.</p></div><div class="work-grid" data-pencil-key="home"><a class="work-card" href="gallery.html"><img src="images/refresh/r1.jpg" alt="Actual SUN PRO Refresh Detailing — Exterior reset" loading="lazy" width="1000" height="1000"><span class="work-card-meta"><strong class="work-card-category">Refresh Detailing</strong><span>↗</span></span></a><a class="work-card" href="gallery.html"><img src="images/correction/c1.jpg" alt="Actual SUN PRO Paint Correction — Paint clarity" loading="lazy" width="1000" height="1000"><span class="work-card-meta"><strong class="work-card-category">Paint Correction</strong><span>↗</span></span></a><a class="work-card" href="gallery.html"><img src="images/ceramic/cc2.jpg" alt="Actual SUN PRO Ceramic Coating — Finished vehicle" loading="lazy" width="1000" height="1000"><span class="work-card-meta"><strong class="work-card-category">Ceramic Coating</strong><span>↗</span></span></a><a class="work-card" href="gallery.html"><img src="images/refresh/r2.jpg" alt="Actual SUN PRO Refresh Detailing — Interior reset" loading="lazy" width="1000" height="1000"><span class="work-card-meta"><strong class="work-card-category">Refresh Detailing</strong><span>↗</span></span></a><a class="work-card" href="gallery.html"><img src="images/correction/c2.jpg" alt="Actual SUN PRO Paint Correction — Gloss & reflections" loading="lazy" width="1000" height="1000"><span class="work-card-meta"><strong class="work-card-category">Paint Correction</strong><span>↗</span></span></a></div><div class="paper-work-tail"><span>Five real work photos</span><a href="gallery.html">View all our work ↗</a></div></div></section>
   <section class="quote-flow" aria-labelledby="quoteFlowTitle">
     <div class="container quote-flow-inner">
       <div class="quote-flow-heading">
@@ -247,6 +246,6 @@ if (menuToggle && nav) {
 }
 </script>
 
-<script defer src="js/hero.js"></script>
+<script type="module" src="js/hero.js?v=latest-upload-20261006"></script>
 </body>
 </html>
