@@ -19,9 +19,9 @@ export function fillWorkGrid(grid,{columns,seed,key=grid.dataset.pencilKey||'all
   grid.dataset.pencilSignature = signature;
   grid.querySelectorAll('.care-scene').forEach(figure=>figure.remove());
   for(const index of picks) {
-    const doc=grid.ownerDocument,figure=doc.createElement('figure'),img=doc.createElement('img'),caption=doc.createElement('figcaption');
+    const doc=grid.ownerDocument,figure=doc.createElement('figure'),img=doc.createElement('img');
     figure.className='care-scene';img.src=pool[index];img.alt='Decorative pencil illustration of car detailing';img.width=1536;img.height=1024;
-    caption.textContent='PENCIL ILLUSTRATION · CARE IN EVERY DETAIL';figure.append(img,caption);grid.append(figure);
+    figure.append(img);grid.append(figure);
   }
 }
 if(typeof document!=='undefined') {
