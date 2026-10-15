@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SUN PRO — Admin</title>
 <meta name="robots" content="noindex, nofollow">
+<link rel="stylesheet" href="css/admin-analytics.css?v=20261015">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -189,6 +190,7 @@ body { font-family:'Plus Jakarta Sans',sans-serif; background:var(--bg); color:v
   <div class="admin-body">
     <div class="tab-bar">
       <button class="tab-btn active" data-tab="enquiries">📋 Enquiries <span class="badge" id="newBadge" style="display:none">0</span></button>
+      <button class="tab-btn" data-tab="analytics">방문 통계</button>
       <button class="tab-btn" data-tab="upload">📤 Upload</button>
       <button class="tab-btn" data-tab="manage">🖼️ Gallery</button>
     </div>
@@ -200,6 +202,40 @@ body { font-family:'Plus Jakarta Sans',sans-serif; background:var(--bg); color:v
       <p class="section-sub" id="enquirySummary" aria-live="polite"></p><button class="btn-outline" id="refreshEnquiries" type="button" style="margin-bottom:20px">Refresh enquiries</button>
        <div id="enquiryList"><div class="empty-state"><span class="loading-spin"></span> Loading…</div></div>
     </div>
+
+    <!-- ANALYTICS TAB: accessible only after the existing admin sign-in. -->
+    <section class="tab-panel" id="tab-analytics" aria-labelledby="analyticsTitle">
+      <h2 class="section-title" id="analyticsTitle">방문 통계</h2>
+      <p class="section-sub">어디에서 들어오고, 어떤 문의 버튼을 누르는지 확인하세요. 설치 이후부터 수집되며 과거 방문은 복원되지 않습니다.</p>
+      <div class="analytics-toolbar">
+        <label for="analyticsPeriod">조회 기간<select id="analyticsPeriod"><option value="1">오늘</option><option value="7" selected>최근 7일</option><option value="30">최근 30일</option><option value="90">최근 90일</option></select></label>
+        <button type="button" class="btn-outline" id="refreshAnalytics">통계 새로고침</button>
+      </div>
+      <p class="analytics-status" id="analyticsStatus" role="status" aria-live="polite">관리자 로그인 후 확인할 수 있습니다.</p>
+      <div id="analyticsResults" hidden>
+        <div class="analytics-metrics" id="analyticsMetrics"></div>
+        <p class="analytics-clicks" id="analyticsClicks"></p>
+        <div class="analytics-card"><h3>어디에서 방문했나요?</h3><div class="analytics-table" id="analyticsChannels"></div>
+          <p class="analytics-note">직접 방문·출처 미확인에는 주소 입력, 즐겨찾기, 앱에서 출처 없이 열린 링크가 포함됩니다. 인스타·페이스북을 더 정확히 구분하려면 아래 추적 링크를 사용하세요. 유입별 방문자는 서로 겹칠 수 있습니다.</p>
+        </div>
+        <div class="analytics-card"><h3>날짜별 방문 횟수</h3><ul class="analytics-chart" id="analyticsDays" aria-label="퍼스 날짜별 방문 횟수"></ul><p class="analytics-note">기간 전체의 방문 횟수는 중복을 제거합니다. 자정을 넘긴 방문은 양쪽 날짜에 표시될 수 있습니다.</p></div>
+        <div class="analytics-card"><h3>캠페인별 반응</h3><div class="analytics-table" id="analyticsCampaigns"></div></div>
+        <div class="analytics-card"><h3>많이 본 페이지</h3><div class="analytics-table" id="analyticsPages"></div></div>
+        <p class="analytics-note">방문자는 사람이 아닌 브라우저 기준 추정치입니다. ID는 30일마다 바뀌며, 시크릿 모드·기기 변경·차단 설정에 따라 수치가 달라집니다. 90일 조회에는 같은 사람이 여러 번 포함될 수 있습니다. 문자·이메일·전화 수치는 버튼 클릭이며 실제 발송이나 예약이 아닙니다. 온라인 문의 완료는 문의 저장 성공을 측정한 수치로, 정확한 고객 문의 내역은 Enquiries에서 확인하세요.</p>
+      </div>
+      <div class="analytics-card">
+        <h3>채널별 추적 링크 만들기</h3>
+        <p class="section-sub">같은 홈페이지로 연결되면서 어떤 채널·게시물에서 왔는지 구분해 줍니다. 프로필이나 새 게시물에 이 링크를 붙여 넣으세요.</p>
+        <div class="analytics-link-fields">
+          <label for="analyticsSource">올릴 채널<select id="analyticsSource"><option value="instagram">Instagram</option><option value="facebook">Facebook</option><option value="google">Google Business Profile</option><option value="email">이메일</option><option value="qr">QR 코드</option><option value="referral">기타 커뮤니티</option></select></label>
+          <label for="analyticsTarget">연결할 페이지<select id="analyticsTarget"><option value="/">홈페이지</option><option value="/services.html">서비스·가격</option><option value="/contact.html">견적 문의</option></select></label>
+          <label for="analyticsCampaign">캠페인 이름<input id="analyticsCampaign" type="text" value="profile" maxlength="64" spellcheck="false" autocomplete="off" placeholder="예: refresh_october"></label>
+        </div>
+        <div class="analytics-link-output"><input id="trackingLink" aria-label="완성된 추적 링크" readonly><button id="copyTrackingLink" class="btn-gold" type="button">링크 복사</button></div>
+        <p class="analytics-status" id="trackingLinkStatus" role="status" aria-live="polite"></p>
+      </div>
+      <label class="analytics-exclude"><input id="analyticsExclude" type="checkbox">이 브라우저에서 내가 보는 방문은 통계에서 제외 (관리자 로그인 시 기본 적용)</label>
+    </section>
 
     <!-- UPLOAD TAB -->
     <div class="tab-panel" id="tab-upload">
@@ -241,6 +277,7 @@ body { font-family:'Plus Jakarta Sans',sans-serif; background:var(--bg); color:v
 
 <script type="module">
 import { escapeHTML, safePhotoURL, contactNumber } from "./js/quote-utils.js";
+import { createAnalyticsDashboard } from "./js/admin-analytics.js";
 const FIREBASE_CONFIG = {
   apiKey:            "AIzaSyC8gEAuf2im-PZIpaJkj736J6QBizh9QVU",
   authDomain:        "sunpro-detailing.firebaseapp.com",
@@ -258,7 +295,7 @@ import { getAuth, signInWithPopup, GoogleAuthProvider, signOut, onAuthStateChang
   from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js';
 import { getStorage, ref as sRef, uploadBytesResumable, getDownloadURL, deleteObject }
   from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-storage.js';
-import { getFirestore, collection, doc, getDocs, setDoc, deleteDoc, updateDoc, writeBatch, query, orderBy }
+import { getFirestore, collection, doc, getDocs, setDoc, deleteDoc, updateDoc, writeBatch, query, orderBy, where, limit, startAfter }
   from 'https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js';
 
 const app      = initializeApp(FIREBASE_CONFIG);
@@ -267,6 +304,7 @@ const provider = new GoogleAuthProvider();
 const storage  = getStorage(app);
 const db       = getFirestore(app);
 const CATS     = ['refresh','correction','ceramic'];
+const analyticsDashboard = createAnalyticsDashboard({ db, sdk: { collection, getDocs, query, orderBy, where, limit, startAfter } });
 
 const loginScreen = document.getElementById('loginScreen');
 const adminScreen = document.getElementById('adminScreen');
@@ -274,10 +312,12 @@ const adminScreen = document.getElementById('adminScreen');
 // 로그인 상태 감지
 onAuthStateChanged(auth, user => {
   if (user && user.email === ADMIN_EMAIL) {
+    analyticsDashboard.authorise(true);
     loginScreen.style.display = 'none';
     adminScreen.style.display = 'block';
     loadEnquiries();
   } else {
+    analyticsDashboard.authorise(false);
     loginScreen.style.display = 'flex';
     adminScreen.style.display = 'none';
   }
@@ -305,6 +345,7 @@ document.querySelectorAll('.tab-btn').forEach(btn => {
     document.getElementById('tab-'+btn.dataset.tab).classList.add('active');
     if (btn.dataset.tab === 'manage') loadManage();
     if (btn.dataset.tab === 'enquiries') loadEnquiries();
+    if (btn.dataset.tab === 'analytics') analyticsDashboard.load();
   });
 });
 

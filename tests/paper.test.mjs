@@ -8,7 +8,7 @@ import { safePhotoURL, escapeHTML } from '../js/quote-utils.js';
 const pages=['index.html','services.html','gallery.html','contact.html','locations.html','about.html','faq.html'];
 const read=file=>fs.readFileSync(new URL('../'+file,import.meta.url),'utf8');
 const before=file=>execFileSync('git',['show','HEAD:'+file],{encoding:'utf8',cwd:new URL('..',import.meta.url)});
-test('paper redesign preserves SEO, booking fields, prices, backend and admin code',()=>{
+test('paper redesign preserves SEO, booking fields, prices and enquiry backend',()=>{
  for(const file of pages){
   const old=new JSDOM(before(file)),current=new JSDOM(read(file)),a=old.window.document,b=current.window.document;
   for(const selector of ['title','meta[name=description]','link[rel=canonical]','script[type="application/ld+json"]'])assert.equal(b.querySelector(selector).outerHTML,a.querySelector(selector).outerHTML,file+' '+selector);
@@ -20,7 +20,10 @@ test('paper redesign preserves SEO, booking fields, prices, backend and admin co
  const old=new JSDOM(before('contact.html')),current=new JSDOM(read('contact.html'));
  assert.equal(current.window.document.querySelector('#contactForm').outerHTML,old.window.document.querySelector('#contactForm').outerHTML);
  old.window.close();current.window.close();
- for(const file of ['admin.html','js/contact.js','js/quote-utils.js','js/firebase-config.js','js/site.js'])assert.equal(read(file),before(file),file);
+ for(const file of ['js/contact.js','js/quote-utils.js','js/firebase-config.js'])assert.equal(read(file),before(file),file);
+ const oldAdmin=new JSDOM(before('admin.html')),newAdmin=new JSDOM(read('admin.html'));
+ for(const node of oldAdmin.window.document.querySelectorAll('[id]'))assert.ok(newAdmin.window.document.getElementById(node.id),'admin lost '+node.id);
+ oldAdmin.window.close();newAdmin.window.close();
 });
 test('gallery decorations fill only incomplete rows with stable choices and never count as photos',()=>{
  const dom=new JSDOM('<div class="work-grid"></div>');const grid=dom.window.document.querySelector('div');

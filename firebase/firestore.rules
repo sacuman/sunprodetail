@@ -1,0 +1,45 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // 고객 문의 - 누구나 작성, 관리자만 읽기/수정/삭제
+    match /enquiries/{document} {
+      allow create: if true;
+      allow read, update, delete: if request.auth != null;
+    }
+
+    // 갤러리 - 누구나 읽기 가능, 쓰기는 관리자만
+    match /gallery/{document=**} {
+      allow read: if true;
+      allow write: if request.auth != null;
+    }
+
+    // Preserve existing access for other collections, without bypassing analytics rules.
+    match /{collectionName}/{document=**} {
+      allow read, write: if request.auth != null && collectionName != 'websiteAnalytics';
+    }
+    match /websiteAnalytics/{eventId} {
+      allow read: if request.auth != null
+        && request.auth.token.email_verified == true
+        && request.auth.token.email == 'sacu2000@gmail.com';
+      allow create: if eventId.matches('^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$')
+        && request.resource.data.keys().hasAll(['version', 'event', 'page', 'visitorId', 'sessionId', 'source', 'medium', 'campaign', 'device', 'service', 'createdAt'])
+        && request.resource.data.keys().hasOnly(['version', 'event', 'page', 'visitorId', 'sessionId', 'source', 'medium', 'campaign', 'device', 'service', 'createdAt'])
+        && request.resource.data.version == 1
+        && request.resource.data.event in ['page_view', 'text_quote_click', 'email_quote_click', 'call_click', 'online_quote_click', 'quote_start', 'quote_saved', 'quote_error', 'quote_notification_failed']
+        && request.resource.data.page in ['/', '/services.html', '/gallery.html', '/contact.html', '/locations.html', '/about.html', '/faq.html']
+        && request.resource.data.visitorId is string
+        && request.resource.data.visitorId.matches('^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$')
+        && request.resource.data.sessionId is string
+        && request.resource.data.sessionId.matches('^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$')
+        && request.resource.data.source in ['facebook', 'instagram', 'google', 'bing', 'tiktok', 'youtube', 'email', 'qr', 'referral', 'direct', 'other']
+        && request.resource.data.medium in ['social', 'organic', 'business_profile', 'email', 'qr', 'referral', 'direct', 'paid', 'other']
+        && request.resource.data.campaign is string
+        && (request.resource.data.campaign == '' || request.resource.data.campaign.matches('^[a-z0-9_-]{1,64}$'))
+        && request.resource.data.device in ['mobile', 'tablet', 'desktop']
+        && request.resource.data['service'] in ['', 'refresh', 'correction', 'ceramic', 'interior', 'unsure']
+        && request.resource.data.createdAt == request.time;
+      allow update, delete: if false;
+    }
+  }
+}
